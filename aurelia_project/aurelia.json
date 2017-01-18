@@ -1,0 +1,238 @@
+{
+    "name": "Zombie Survival Social Network",
+    "type": "project:application",
+    "platform": {
+        "id": "web",
+        "displayName": "Web",
+        "output": "scripts"
+    },
+    "transpiler": {
+        "id": "typescript",
+        "displayName": "TypeScript",
+        "fileExtension": ".ts",
+        "dtsSource": [
+            "./typings/**/*.d.ts",
+            "./custom_typings/**/*.d.ts"
+        ],
+        "source": "src/**/*.ts"
+    },
+    "markupProcessor": {
+        "id": "none",
+        "displayName": "None",
+        "fileExtension": ".html",
+        "source": [
+            "src/**/*.html",
+            "src/**/*.css"
+        ]
+    },
+    "cssProcessor": {
+        "id": "less",
+        "displayName": "Less",
+        "fileExtension": ".less",
+        "source": "src/**/main.less"
+    },
+    "editor": {
+        "id": "vscode",
+        "displayName": "Visual Studio Code"
+    },
+    "unitTestRunner": {
+        "id": "karma",
+        "displayName": "Karma",
+        "source": "test/unit/**/*.ts"
+    },
+    "paths": {
+        "root": "src",
+        "resources": "src/resources",
+        "elements": "src/resources/elements",
+        "attributes": "src/resources/attributes",
+        "valueConverters": "src/resources/value-converters",
+        "bindingBehaviors": "src/resources/binding-behaviors"
+    },
+    "testFramework": {
+        "id": "jasmine",
+        "displayName": "Jasmine"
+    },
+    "build": {
+        "targets": [{
+            "id": "web",
+            "displayName": "Web",
+            "output": "scripts"
+        }],
+        "loader": {
+            "type": "require",
+            "configTarget": "vendor-bundle.js",
+            "includeBundleMetadataInConfig": "auto",
+            "plugins": [{
+                "name": "text",
+                "extensions": [
+                    ".html",
+                    ".css",
+                    ".less"
+                ],
+                "stub": false
+            }]
+        },
+        "options": {
+            "minify": "stage & prod",
+            "sourcemaps": "dev & stage"
+        },
+        "bundles": [{
+                "name": "app-bundle.js",
+                "source": [
+                    "[**/*.js]",
+                    "**/*.{css,html,less}"
+                ]
+            },
+            {
+                "name": "vendor-bundle.js",
+                "prepend": [
+                    "node_modules/bluebird/js/browser/bluebird.core.js",
+                    "scripts/require.js"
+                ],
+                "dependencies": [
+                    "aurelia-binding",
+                    "aurelia-bootstrapper",
+                    "aurelia-dependency-injection",
+                    "aurelia-event-aggregator",
+                    "aurelia-framework",
+                    "aurelia-history",
+                    "aurelia-history-browser",
+                    "aurelia-loader",
+                    "aurelia-loader-default",
+                    "aurelia-logging",
+                    "aurelia-logging-console",
+                    "aurelia-metadata",
+                    "aurelia-pal",
+                    "aurelia-pal-browser",
+                    "aurelia-path",
+                    "aurelia-polyfills",
+                    "aurelia-route-recognizer",
+                    "aurelia-router",
+                    "aurelia-task-queue",
+                    "aurelia-templating",
+                    "aurelia-templating-binding",
+                    {
+                        "name": "text",
+                        "path": "../scripts/text"
+                    },
+                    {
+                        "name": "aurelia-templating-resources",
+                        "path": "../node_modules/aurelia-templating-resources/dist/amd",
+                        "main": "aurelia-templating-resources"
+                    },
+                    {
+                        "name": "aurelia-templating-router",
+                        "path": "../node_modules/aurelia-templating-router/dist/amd",
+                        "main": "aurelia-templating-router"
+                    },
+                    {
+                        "name": "aurelia-testing",
+                        "path": "../node_modules/aurelia-testing/dist/amd",
+                        "main": "aurelia-testing",
+                        "env": "dev"
+                    },
+                    {
+                        "name": "aurelia-fetch-client",
+                        "path": "../node_modules/aurelia-fetch-client/dist/amd",
+                        "main": "aurelia-fetch-client"
+                    },
+                    {
+                        "name": "whatwg-fetch",
+                        "path": "../node_modules/whatwg-fetch",
+                        "main": "fetch"
+                    },
+                    {
+                        "name": "aurelia-html-import-template-loader",
+                        "path": "../node_modules/aurelia-html-import-template-loader/dist/amd",
+                        "main": "index"
+                    },
+                    {
+                        "name": "i18next",
+                        "path": "../node_modules/i18next/dist/umd",
+                        "main": "i18next"
+                    },
+                    {
+                        "name": "aurelia-i18n",
+                        "path": "../node_modules/aurelia-i18n/dist/amd",
+                        "main": "aurelia-i18n"
+                    },
+                    {
+                        "name": "i18next-xhr-backend",
+                        "path": "../node_modules/i18next-xhr-backend/dist/umd",
+                        "main": "i18nextXHRBackend"
+                    },
+                    {
+                        "name": "intl",
+                        "path": "../node_modules/intl/dist",
+                        "main": "Intl.min"
+                    },
+                    "jquery"
+                ]
+            },
+            {
+                "name": "materialize-bundle.js",
+                "dependencies": [
+                    "jquery",
+                    {
+                        "name": "materialize-css",
+                        "path": "../node_modules/materialize-css/dist",
+                        "main": "js/materialize.amd",
+                        "deps": [
+                            "jquery"
+                        ],
+                        "resources": [
+                            "css/materialize.css"
+                        ],
+                        "exports": "Materialize"
+                    },
+                    {
+                        "name": "aurelia-materialize-bridge",
+                        "path": "../node_modules/aurelia-materialize-bridge/dist/amd",
+                        "main": "index",
+                        "deps": [
+                            "jquery"
+                        ],
+                        "resources": [
+                            "breadcrumbs/breadcrumbs.css",
+                            "breadcrumbs/breadcrumbs.html",
+                            "card/card.css",
+                            "card/card.html",
+                            "carousel/carousel-item.html",
+                            "carousel/carousel.css",
+                            "carousel/carousel.html",
+                            "checkbox/checkbox.html",
+                            "chip/chip.css",
+                            "chip/chip.html",
+                            "collection/collection-header.css",
+                            "collection/collection-header.html",
+                            "collection/collection-item.css",
+                            "collection/collection-item.html",
+                            "collection/collection.html",
+                            "collection/md-collection-selector.css",
+                            "collection/md-collection-selector.html",
+                            "colors/md-colors.html",
+                            "dropdown/dropdown-element.html",
+                            "fab/fab.html",
+                            "file/file.html",
+                            "input/input.css",
+                            "input/input.html",
+                            "navbar/navbar.css",
+                            "navbar/navbar.html",
+                            "pagination/pagination.html",
+                            "progress/progress.html",
+                            "radio/radio.html",
+                            "range/range.css",
+                            "range/range.html",
+                            "sidenav/sidenav.css",
+                            "sidenav/sidenav.html",
+                            "slider/slider.css",
+                            "switch/switch.css",
+                            "switch/switch.html",
+                            "well/md-well.html"
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

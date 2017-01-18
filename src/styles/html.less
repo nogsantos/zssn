@@ -1,0 +1,40 @@
+html {
+  height:100% !important; 
+  min-height:100% !important; 
+  position:relative !important;  
+}
+body {  
+  background-color: @bg-color !important;
+  color: @font-color !important;
+  font-size: 0.9em;  
+}
+
+a {
+    text-decoration: none !important;
+}
+
+body > .container {
+  padding: 60px 15px;
+}
+
+code {
+  font-size: 80%;
+}
+
+footer{
+	margin-top: 50px;
+	position: fixed;
+	bottom: 0;
+	width: 100%;	
+	background-color: @primary-color;
+	border-top: 1px solid @border-color;
+	z-index: 900 !important;
+	.container-fluid {
+		padding-right: 15px;
+		padding-left: 15px;
+		.text-muted {
+			margin: 20px 0;
+			color: @primary-text !important;
+		}
+	}
+}
