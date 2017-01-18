@@ -1,26 +1,25 @@
-import { Aurelia, inject } from 'aurelia-framework';
+import { Aurelia, autoinject } from 'aurelia-framework';
 import { NavigationInstruction, RouterConfiguration, AppRouter } from "aurelia-router";
+import { I18N } from 'aurelia-i18n';
 /**
  * 
  */
+@autoinject()
 export class App {
-    public router: AppRouter;
-    public message = 'Hello resistance members, we are alive!';
+    private router: AppRouter;
     /**
-    * Aurelia: Importação do login para verificar se o usuário está autenticado.     
-    * I18N: Tradução
-    */
-    constructor() { }
+     *      
+     */
+    constructor(
+        private i18n: I18N
+    ) { }
     /**
      * Rotas
      */
     configureRouter(config: RouterConfiguration, router: AppRouter): void {
+        config.title = this.i18n.tr("hello");
         config.map({
-            route: ['', 'index'],
-            redirect: 'index'
-        });
-        config.map({
-            route: ['home', 'dashboard'],
+            route: ['', 'home', 'index'],
             name: 'index',
             moduleId: './v1/index/index',
             href: "#/",
@@ -32,16 +31,18 @@ export class App {
             route: ['people'],
             name: 'people',
             moduleId: './v1/people/index',
+            title: "People",
             href: "#/people",
-            icon: 'people',
+            icon: 'ic_directions_run',
             id: "_people"
         });
         config.map({
             route: ['report'],
             name: 'report',
             moduleId: './v1/report/index',
+            title: "Report",
             href: "#/report",
-            icon: 'report',
+            icon: 'ic_directions_run',
             id: "_report"
         });
         /*
@@ -55,7 +56,6 @@ export class App {
             instruction.config.href = instruction.fragment;
         };
         config.mapUnknownRoutes(navStrat);
-
         this.router = router;
     }
 

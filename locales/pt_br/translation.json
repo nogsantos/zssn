@@ -1,3 +1,6 @@
 {
-    "hello" : "Hello resistance members, we are alive!"
+    "hello": "Hello resistance members, we are alive!",
+    "about": "Sobre",
+    "author": "Fabricio Nogueira",
+    "web_address": "http://fabricionogueira.site"
 }

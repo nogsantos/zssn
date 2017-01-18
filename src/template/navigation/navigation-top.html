@@ -1,0 +1,22 @@
+<template>    
+    <nav>
+        <div class="container">
+            <div class="nav-wrapper">
+                <ul class="hide-on-med-and-down">
+                    <li>${router.title}</li>                    
+                    <li repeat.for="row of router.navigation" id="${row.config.id}">
+                        <a                             
+                            href.bind="row.href" 
+                            md-button="floating: true;" 
+                            md-waves="color: light; circle: true;" 
+                            class="transparent" 
+                            md-tooltip="position: bottom; text.bind: row.title">
+                            <i class="small material-icons">${row.config.icon}</i>
+                        </a>
+                        <span class="nav-title">${row.title}</span>
+                    </li>
+                </ul>               
+            </div>
+        </div>
+    </nav>
+</template>
