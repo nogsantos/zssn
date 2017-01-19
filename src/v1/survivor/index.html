@@ -1,8 +1,10 @@
 <template>
     <p class="flow-text">${title}</p>
     <div class="section card-panel white z-depth-2">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae corrupti nulla facere, nemo vel nesciunt temporibus est
-        placeat iusto assumenda tempore recusandae delectus rem repellat deserunt magni exercitationem quaerat tenetur!
+        ${'survivor.info'|t}
+    </div>
+    <div class="progress" if.bind="is_loading">
+        <div class="indeterminate"></div>
     </div>
     <ul class="collection">
         <li class="collection-item avatar hoverable" repeat.for="survivor of survivors">

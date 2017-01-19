@@ -1,22 +1,29 @@
 <template>    
-    <nav>
-        <div class="container">
-            <div class="nav-wrapper">
-                <a href="#/" class="brand-logo flow-text"><i class="material-icons">more_vert</i>${router.title}</a>
-                <ul class="right hide-on-med-and-down">
-                    <li repeat.for="row of router.navigation" id="${row.config.id}">
-                        <a                             
-                            href.bind="row.href" 
-                            md-button="floating: true;" 
-                            md-waves="color: light; circle: true;" 
-                            class="transparent" 
-                            md-tooltip="position: bottom; text.bind: row.title">
-                            <i class="large material-icons">${row.config.icon}</i>
-                        </a>
-                        <span class="nav-title">${row.title}</span>
-                    </li>
-                </ul>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="container">
+                <div class="nav-wrapper">
+                    <a href="#/" class="brand-logo">
+                    <i class="material-icons">more_vert</i>
+                        <span class="flow-text">
+                            ${router.title}
+                        </span>
+                    </a>
+                    <ul class="right hide-on-med-and-down">
+                        <li repeat.for="row of router.navigation" id="${row.config.id}">
+                            <a                             
+                                href.bind="row.href" 
+                                md-button="floating: true;" 
+                                md-waves="color: light; circle: true;" 
+                                class="transparent" 
+                                md-tooltip="position: bottom; text.bind: row.title">
+                                <i class="large material-icons">${row.config.icon}</i>
+                            </a>
+                            <span class="nav-title flow-text">${row.title}</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </div>
 </template>

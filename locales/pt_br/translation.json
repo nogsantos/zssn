@@ -1,15 +1,28 @@
 {
     "app_name": "Membros da resistência",
     "about": "Sobre",
-    "about_info": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam placeat dolor pariatur culpa eligendi quis nihil iste modi, ipsum reprehenderit numquam laudantium libero tempore. Natus, maxime, quod. Quisquam, delectus, aperiam!",
+    "about_info": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. ",
     "author": "Fabricio Nogueira",
     "web_address": "http://fabricionogueira.site",
     "technologies": "Tecnologias",
     "people": "Pessoas",
     "members": "Membros",
-    "members_rol": "Rol de Membros",    
+    "members_rol": "Rol de Membros",
     "name": "Nome",
     "age": "Idade",
+    "location": "Localização",
+    "last_location": "Última localização",
+    "current_location": "Localização atual",
+    "inventory": "Inventário",
+    "water": "Água",
+    "food": "Comida",
+    "medication": "Medicamentos",
+    "ammunition": "Munição",
+    "item_point": ": {{count}} ponto",
+    "item_point_plural": ": {{count}} pontos",
+    "total": "Pontuação total",
+    "item": "Item",
+    "quantity_abv": "Qtd.",
     "gender": {
         "title": "Sexo",
         "desc": "$t(gender.{{gender}})",
@@ -19,12 +32,28 @@
     },
     "survivor": {
         "title": "Sobrevivente",
+        "info": "Aqui serão listados os sobreviventes",
         "status": "Estado",
         "desc": "$t(survivor.{{status}})",
         "true": "Infectado",
-        "false": "Não infectado"
+        "false": "Não infectado",
+        "list": "Listagem de sobreviventes",
+        "new": "Cadastrar novo sobrevivente",
+        "form": {
+            "help": "Use o formulário abaixo para cadastrar as informações do sobrevivente."
+        }
     },
-    "survivors_list": "Lista de sobreviventes",
+    "zombie": {
+        "title": "Zumbi",
+        "speech": {
+            "0": "Olá, posso ajudar?",
+            "1": "Clique, se não tem medo!",
+            "2": "Vamos, apenas um clique, não seja tímido, posso fazer grandes coisas por você!",
+            "3": "Aaaaaarrrrhhhhh!",
+            "4": "Estou com fome, e você?",
+            "5": "No que está pensando...? Gostaria de saber..."
+        }
+    },
     "resources": "Recursos",
     "report": "Relatórios",
     "home": "Início",

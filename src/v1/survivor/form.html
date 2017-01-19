@@ -1,0 +1,64 @@
+<template>
+    <require from="./form.css"></require>
+    <p class="flow-text">${title} <small>» ${'survivor.form.help'|t}</small></p>
+    <div class="section card-panel white z-depth-2">
+        <div class="row">
+            <div class="col s6">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="survivor_name" type="text" class="validate">
+                        <label for="survivor_name">${'name'|t}</label>
+                    </div>
+                    <div class="input-field col s4">
+                        <input id="survivor_age" type="number" class="validate">
+                        <label for="survivor_age">${'age'|t}</label>
+                    </div>
+                    <div class="input-field col s4">
+                        <input id="survivor_gender" type="number" class="validate">
+                        <label for="survivor_gender">${'gender.title'|t}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <label for="">${'inventory'|t}</label>
+                        <div class="card-panel grey lighten-4 hoverable inventory">
+                            <div class="row">
+                                <div class="col s2 left">  
+                                    <span>${'item'|t} »</span><br><br><br>
+                                    <span>${'quantity_abv'|t} »</span>
+                                </div>
+                                <div class="col s2 center" md-tooltip="position: top; text.bind: lb_water">
+                                    <img src="images/water.svg">
+                                    <input id="_qtd_water" type="number" value.bind="qtd_water">
+                                </div>
+                                <div class="col s2 center" md-tooltip="position: top; text.bind: lb_food">
+                                    <img src="images/food.svg">
+                                    <input id="_qtd_food" type="number" value.bind="qtd_food">
+                                </div>
+                                <div class="col s2 center" md-tooltip="position: top; text.bind: lb_medication">
+                                    <img src="images/needle.svg">
+                                    <input id="_qtd_medication" type="number" value.bind="qtd_medication">
+                                </div>
+                                <div class="col s2 center" md-tooltip="position: top; text.bind: lb_ammunition">
+                                    <img src="images/pistol.svg">
+                                    <input id="_qtd_ammunition" type="number" value.bind="qtd_ammunition">
+                                </div>
+                                <div class="col s2 center" md-tooltip="position: top; text.bind: lb_total">                                    
+                                    <span id="txt_total">${total_itens_points}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s6">
+                <label for="map">${'last_location'|t}</label>
+                <div id="map" class="map" tabindex="0" map></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+            </div>
+        </div>
+    </div>
+</template>

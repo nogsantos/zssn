@@ -1,10 +1,20 @@
 <template>
     <require from="styles/main.css"></require>
     <require from="template/navigation/navigation-top"></require>
+    <require from="template/navigation/navigation-zombie"></require>
     <require from="template/page/page-footer"></require>
-    <navigation-top router.bind="router"></navigation-top>
-    <div class="container">
-        <router-view></router-view>        
-    </div>
-    <page-footer></page-footer>
+    <header>
+        <navigation-top router.bind="router"></navigation-top>
+    </header>
+    <main>
+        <div class="container" id="main-container">
+            <router-view></router-view>
+        </div>
+    </main>
+    <aside>
+        <navigation-zombie></navigation-zombie>
+    </aside>
+    <footer>
+        <page-footer></page-footer>
+    </footer>
 </template>

@@ -1,0 +1,8 @@
+#txt_total{
+    font-weight: bold;
+    font-size: 4em;
+}
+.inventory input[type='number']{
+    text-align: center;
+    font-size: 2em;
+}

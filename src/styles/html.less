@@ -1,24 +1,29 @@
+@import "colors";
+@import "params";
+
 html {
-  height:100% !important; 
-  min-height:100% !important; 
-  position:relative !important;  
+    margin: 0;
+    padding: 0;
+    height:100% !important; 
+    min-height:100% !important;
+    overflow-y: auto !important; 
 }
+
 body {  
-  background-color: @bg-color !important;
-  color: @font-color !important;
-  font-size: 0.9em;  
+    background-color: @bg-color !important;
+    color: @font-color !important;
+    font-size: 0.9em;  
 }
 
 a {
     text-decoration: none !important;
 }
 
-
 code {
   font-size: 80%;
 }
 
-nav{
+nav{    
     background-color: @primary-color !important;	
     @media all and ( min-width: 600px){
         height: 7em !important;
@@ -35,19 +40,15 @@ nav{
     }
 }
 
-footer{
-	margin-top: 50px;
-	position: fixed;
-	bottom: 0;
+footer{	
+    margin-top: 0 !important;
+    padding-top: 0 !important;        
+    margin-bottom: 10px !important;
 	width: 100%;	
-	background-color: @primary-color !important;	
-	z-index: 900 !important;
-	.container-fluid {
-		padding-right: 15px;
-		padding-left: 15px;
-		.text-muted {
-			margin: 20px 0;
-			color: @primary-text !important;
-		}
-	}
+    &>page-footer>div.footer-content>div>a{
+        color: @text-hidden-color !important;
+    };
+    &>page-footer>div.footer-content>div>a:hover{
+        color: @text-hover-color !important;
+    };
 }

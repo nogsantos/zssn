@@ -29,7 +29,7 @@
         "id": "less",
         "displayName": "Less",
         "fileExtension": ".less",
-        "source": "src/**/main.less"
+        "source": "src/**/*.less"
     },
     "editor": {
         "id": "vscode",
@@ -165,6 +165,11 @@
                         "name": "intl",
                         "path": "../node_modules/intl/dist",
                         "main": "Intl.min"
+                    },
+                    {
+                        "name": "openlayers",
+                        "path": "../node_modules/openlayers/dist",
+                        "main": "ol"
                     },
                     "jquery"
                 ]

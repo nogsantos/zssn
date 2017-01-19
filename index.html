@@ -11,6 +11,10 @@
 
 <body aurelia-app="main">
     <script src="scripts/vendor-bundle.js" data-main="aurelia-bootstrapper"></script>
+    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+    <!--[if IE]>
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+    <![endif]-->
 </body>
 
 </html>

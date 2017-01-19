@@ -20,33 +20,49 @@ export class App {
         config.title = this.i18n.tr("app_name");
         config.map({
             route: ['', 'home', 'index'],
-            name: 'index',
-            moduleId: './v1/index/index',
-            href: "#/",
-            title: this.i18n.tr('home'),
-            icon: 'home',
+            name: 'Index',
+            moduleId: 'v1/index/index',
             nav: false,
+            title: this.i18n.tr('home'),
+            href: "#/",
+            icon: 'home',
             id: "_home"
         });
         config.map({
-            route: ['survivor'],
-            name: 'survivor',
-            moduleId: './v1/survivor/index',
-            title: this.i18n.tr('survivors_list'),
+            route: 'survivor',
+            name: 'Survivor',
+            moduleId: 'v1/survivor/index',
+            nav: true,
+            title: this.i18n.tr('survivor.list'),
             href: "#/survivor",
             icon: 'accessibility',
-            nav: true,
             id: "_survivor"
         });
         config.map({
-            route: ['report'],
-            name: 'report',
-            moduleId: './v1/report/index',
+            route: 'survivor/form',
+            name: 'SurvivorForm',
+            moduleId: 'v1/survivor/form',            
+            nav: false
+        });
+        config.map({
+            route: 'report',
+            name: 'Report',
+            moduleId: 'v1/report/index',
+            nav: true,
             title: this.i18n.tr('report'),
             href: "#/report",
             icon: 'content_paste',
-            nav: true,
             id: "_report"
+        });
+        config.map({
+            route: 'about',
+            name: 'About',
+            moduleId: 'v1/about/index',
+            nav: true,
+            title: this.i18n.tr('about'),
+            href: "#/about",
+            icon: 'settings',
+            id: "_about"
         });
         /*
          * Tratando as rotas desconhecidas
