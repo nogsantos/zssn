@@ -1,6 +1,32 @@
 {
-    "hello": "Hello resistance members, we are alive!",
+    "app_name": "Membros da resistência",
     "about": "Sobre",
+    "about_info": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam placeat dolor pariatur culpa eligendi quis nihil iste modi, ipsum reprehenderit numquam laudantium libero tempore. Natus, maxime, quod. Quisquam, delectus, aperiam!",
     "author": "Fabricio Nogueira",
-    "web_address": "http://fabricionogueira.site"
+    "web_address": "http://fabricionogueira.site",
+    "technologies": "Tecnologias",
+    "people": "Pessoas",
+    "members": "Membros",
+    "members_rol": "Rol de Membros",    
+    "name": "Nome",
+    "age": "Idade",
+    "gender": {
+        "title": "Sexo",
+        "desc": "$t(gender.{{gender}})",
+        "F": "Feminino",
+        "M": "Masculino",
+        "undefined": "Indefinido"
+    },
+    "survivor": {
+        "title": "Sobrevivente",
+        "status": "Estado",
+        "desc": "$t(survivor.{{status}})",
+        "true": "Infectado",
+        "false": "Não infectado"
+    },
+    "survivors_list": "Lista de sobreviventes",
+    "resources": "Recursos",
+    "report": "Relatórios",
+    "home": "Início",
+    "wellcome": "Bem vindo sobrevivente membro da resistência!"
 }

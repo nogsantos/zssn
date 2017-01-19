@@ -16,7 +16,7 @@ export function configure(aurelia: Aurelia) {
      */
     aurelia.use
         .standardConfiguration()
-        .feature('resources')        
+        .feature('resources')
         .plugin('aurelia-materialize-bridge', b => b.useAll()) // materialize
         .plugin('aurelia-i18n', (instance) => { // i18next
             instance.i18next.use(Backend);

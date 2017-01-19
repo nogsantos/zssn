@@ -3,14 +3,16 @@
   "compilerOptions": {
     "sourceMap": true,
     "target": "es5",
-    "module": "amd",
+    "module": "amd",    
     "declaration": false,
     "noImplicitAny": false,
     "removeComments": true,
+    "noEmitOnError": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
-    "lib": ["es2015", "dom"]
+    "allowJs": true,
+    "moduleResolution": "node",    
+    "lib": ["es2015", "dom", "es2015.promise", "es5", "es6"]
   },
   "exclude": [
     "node_modules"

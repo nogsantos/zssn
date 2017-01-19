@@ -13,9 +13,6 @@ a {
     text-decoration: none !important;
 }
 
-body > .container {
-  padding: 60px 15px;
-}
 
 code {
   font-size: 80%;
@@ -23,6 +20,19 @@ code {
 
 nav{
     background-color: @primary-color !important;	
+    @media all and ( min-width: 600px){
+        height: 7em !important;
+        .nav-title {
+            display: none !important;
+        }
+        .nav-wrapper{
+            top: 1em !important;    
+        }
+        .waves-circle{
+            width: 4.5em !important;
+            height: 4.5em !important;
+        }    
+    }
 }
 
 footer{

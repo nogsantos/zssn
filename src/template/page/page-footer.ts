@@ -6,8 +6,10 @@ import { I18N } from 'aurelia-i18n';
 @autoinject()
 export class PageFooter {
     private about: string;
+    private about_info: string;
     private author: string;
     private web_address: string;
+    private technologies: string;
     /**
      * 
      */
@@ -19,7 +21,9 @@ export class PageFooter {
      */
     created(): void {
         this.about = this.i18n.tr('about');
+        this.about_info = this.i18n.tr('about_info');        
         this.author = this.i18n.tr('author');
         this.web_address = this.i18n.tr('web_address');
+        this.technologies = this.i18n.tr('technologies');
     }
 }

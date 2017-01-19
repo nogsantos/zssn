@@ -2,8 +2,8 @@
     <nav>
         <div class="container">
             <div class="nav-wrapper">
-                <ul class="hide-on-med-and-down">
-                    <li>${router.title}</li>                    
+                <a href="#/" class="brand-logo flow-text"><i class="material-icons">more_vert</i>${router.title}</a>
+                <ul class="right hide-on-med-and-down">
                     <li repeat.for="row of router.navigation" id="${row.config.id}">
                         <a                             
                             href.bind="row.href" 
@@ -11,11 +11,11 @@
                             md-waves="color: light; circle: true;" 
                             class="transparent" 
                             md-tooltip="position: bottom; text.bind: row.title">
-                            <i class="small material-icons">${row.config.icon}</i>
+                            <i class="large material-icons">${row.config.icon}</i>
                         </a>
                         <span class="nav-title">${row.title}</span>
                     </li>
-                </ul>               
+                </ul>
             </div>
         </div>
     </nav>

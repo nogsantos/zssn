@@ -2,7 +2,7 @@ import { Aurelia, autoinject } from 'aurelia-framework';
 import { NavigationInstruction, RouterConfiguration, AppRouter } from "aurelia-router";
 import { I18N } from 'aurelia-i18n';
 /**
- * 
+ * Main rote
  */
 @autoinject()
 export class App {
@@ -17,32 +17,35 @@ export class App {
      * Rotas
      */
     configureRouter(config: RouterConfiguration, router: AppRouter): void {
-        config.title = this.i18n.tr("hello");
+        config.title = this.i18n.tr("app_name");
         config.map({
             route: ['', 'home', 'index'],
             name: 'index',
             moduleId: './v1/index/index',
             href: "#/",
-            title: "Wellcome",
+            title: this.i18n.tr('home'),
             icon: 'home',
+            nav: false,
             id: "_home"
         });
         config.map({
-            route: ['people'],
-            name: 'people',
-            moduleId: './v1/people/index',
-            title: "People",
-            href: "#/people",
-            icon: 'ic_directions_run',
-            id: "_people"
+            route: ['survivor'],
+            name: 'survivor',
+            moduleId: './v1/survivor/index',
+            title: this.i18n.tr('survivors_list'),
+            href: "#/survivor",
+            icon: 'accessibility',
+            nav: true,
+            id: "_survivor"
         });
         config.map({
             route: ['report'],
             name: 'report',
             moduleId: './v1/report/index',
-            title: "Report",
+            title: this.i18n.tr('report'),
             href: "#/report",
-            icon: 'ic_directions_run',
+            icon: 'content_paste',
+            nav: true,
             id: "_report"
         });
         /*
