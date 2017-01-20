@@ -12,11 +12,17 @@ export class Form {
     private lb_medication: string;
     private lb_ammunition: string;
     private lb_total: string;
-    @bindable private total_itens_points: number;
+    private lb_gender_m: string;
+    private lb_gender_f: string;
+    @bindable private location;
+    @bindable private gender;
+    @bindable private name;
+    @bindable private age;
     @bindable private qtd_water: number;
     @bindable private qtd_food: number;
     @bindable private qtd_medication: number;
     @bindable private qtd_ammunition: number;
+    @bindable private total_itens_points: number;
     private inventory_items_point = {
         watter: 4,
         food: 3,
@@ -24,7 +30,7 @@ export class Form {
         ammunition: 1
     };
     /**
-     * Dependency injections
+     * 
      */
     constructor(
         private i18n: I18N,
@@ -39,6 +45,8 @@ export class Form {
         this.lb_food = `${this.i18n.tr('food')}  ${this.i18n.tr('item_point', { count: this.inventory_items_point.food })}`;
         this.lb_medication = `${this.i18n.tr('medication')}  ${this.i18n.tr('item_point', { count: this.inventory_items_point.medication })}`;
         this.lb_ammunition = `${this.i18n.tr('ammunition')}  ${this.i18n.tr('item_point', { count: this.inventory_items_point.ammunition })}`;
+        this.lb_gender_f = `${this.i18n.tr('gender.F')}`;
+        this.lb_gender_m = `${this.i18n.tr('gender.M')}`;
         this.lb_total = `${this.i18n.tr('total')}`;
         this.total_itens_points = 0;
         this.qtd_water = 0;
@@ -46,10 +54,32 @@ export class Form {
         this.qtd_medication = 0;
         this.qtd_ammunition = 0;
     }
+
+    attached(){
+        console.log(this);
+    }
     /**
      * 
      */
-    pointsCalculation() {
-        
+    gendersChoice(choice: string): void {
+        this.gender = choice;
+    }
+    /**
+     * 
+     */
+    save() {
+
+    }
+    /**
+     * 
+     */
+    cancel() {
+
+    }
+    /**
+     * 
+     */
+    getCoordinates(cordinates){
+        console.log(cordinates);
     }
 }

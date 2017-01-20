@@ -1,5 +1,7 @@
 # ZSSN (Zombie Survival Social Network) - Frontend
 
+[![Build Status](https://travis-ci.org/nogsantos/zssn.svg?branch=master)](https://travis-ci.org/nogsantos/zssn)
+
 By Fabricio Nogueira
 
 ## Problem Description

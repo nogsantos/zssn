@@ -10,6 +10,8 @@ scripts/app-bundle.js
 scripts/vendor-bundle.js
 scripts/materialize-bundle.js
 src/environment.ts
+dist/
+nginx/log/*.log
 
 ### Node ###
 # Logs

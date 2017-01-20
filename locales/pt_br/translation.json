@@ -22,6 +22,8 @@
     "item_point_plural": ": {{count}} pontos",
     "total": "Pontuação total",
     "item": "Item",
+    "save": "Salvar",
+    "clean_form": "Limpar formulário",
     "quantity_abv": "Qtd.",
     "gender": {
         "title": "Sexo",
@@ -40,7 +42,7 @@
         "list": "Listagem de sobreviventes",
         "new": "Cadastrar novo sobrevivente",
         "form": {
-            "help": "Use o formulário abaixo para cadastrar as informações do sobrevivente."
+            "help": "Use o formulário abaixo registar os dados."
         }
     },
     "zombie": {

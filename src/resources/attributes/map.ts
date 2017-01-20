@@ -1,10 +1,9 @@
-import { inject, customAttribute, DOM, noView } from 'aurelia-framework';
+import { inject, customAttribute, DOM, noView, bindable, bindingMode } from 'aurelia-framework';
 import * as ol from 'openlayers';
-import * as $ from 'jquery';
 /**
  * OpenLayers Map
  */
-@customAttribute('map')
+@customAttribute('map', bindingMode.twoWay)
 @inject(DOM.Element)
 @noView
 export class Map {
@@ -15,6 +14,10 @@ export class Map {
     private positionFeature;
     private accuracyFeature;
     private draw;
+    private raster;
+    private vector;
+    private source;
+    @bindable coodinates: any;
     /**
      * 
      */
@@ -24,17 +27,15 @@ export class Map {
     /**
      * 
      */
-    attached() {
-        let sef = this;
-
-        var raster = new ol.layer.Tile({
+    created(){
+        this.raster = new ol.layer.Tile({
             source: new ol.source.OSM()
         });
 
-        var source = new ol.source.Vector({ wrapX: false });
+        this.source = new ol.source.Vector({ wrapX: false });
 
-        var vector = new ol.layer.Vector({
-            source: source
+        this.vector = new ol.layer.Vector({
+            source: this.source
         });
 
         this.geolocation = new ol.Geolocation();
@@ -43,14 +44,23 @@ export class Map {
             center: [0, 0],
             zoom: 2
         });
-            // layers: [
-            //     new ol.layer.Tile({
-            //         source: new ol.source.OSM()
-            //     })
-            // ],
+
+    }
+    /**
+     * 
+     */
+    attached() {
+        let sef = this;
+
+        
+        // layers: [
+        //     new ol.layer.Tile({
+        //         source: new ol.source.OSM()
+        //     })
+        // ],
 
         this.map = new ol.Map({
-            layers: [raster, vector],
+            layers: [this.raster, this.vector],
             target: sef.element,
             controls: ol.control.defaults({
                 attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
@@ -69,11 +79,7 @@ export class Map {
         this.geolocation.setTracking(true);
 
         this.geolocation.on('change', () => {
-            // console.log(this.geolocation.getAccuracy() + ' [m]');
-            // console.log(this.geolocation.getAltitude() + ' [m]');
-            // console.log(this.geolocation.getAltitudeAccuracy() + ' [m]');
-            // console.log(this.geolocation.getHeading() + ' [rad]');
-            // console.log(this.geolocation.getSpeed() + ' [m/s]');
+            this.coodinates = JSON.parse(`[${this.geolocation.getPosition()}]`);
             console.log(JSON.parse(`[${this.geolocation.getPosition()}]`));
         });
 
@@ -85,9 +91,6 @@ export class Map {
         this.accuracyFeature = new ol.Feature();
         this.geolocation.on('change:accuracyGeometry', () => {
             this.accuracyFeature.setGeometry(this.geolocation.getAccuracyGeometry());
-            // let view = this.map.getView();
-            // let zoom = view.getZoom();
-            // view.setZoom(zoom - 5);
         });
 
         this.positionFeature = new ol.Feature();
@@ -116,9 +119,8 @@ export class Map {
             })
         });
 
-
         this.draw = new ol.interaction.Draw({
-            source: source,
+            source: this.source,
             type: /** @type {ol.geom.GeometryType} */ "Circle"
         });
         this.map.addInteraction(this.draw);

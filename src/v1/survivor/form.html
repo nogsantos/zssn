@@ -3,61 +3,110 @@
     <p class="flow-text">${title} <small>» ${'survivor.form.help'|t}</small></p>
     <div class="section card-panel white z-depth-2">
         <div class="row">
-            <div class="col s6">
+            <div class="col s12 m12 l6">
                 <div class="row">
-                    <div class="input-field col s6">
-                        <input id="survivor_name" type="text" class="validate">
+                    <div class="input-field col s12 m12 l5">
+                        <input id="survivor_name" type="text" class="validate" value.bind="name">
                         <label for="survivor_name">${'name'|t}</label>
                     </div>
-                    <div class="input-field col s4">
-                        <input id="survivor_age" type="number" class="validate">
+                    <div class="input-field col s12 m12 l2">
+                        <input id="survivor_age" type="number" class="validate" value.bind="age">
                         <label for="survivor_age">${'age'|t}</label>
                     </div>
-                    <div class="input-field col s4">
-                        <input id="survivor_gender" type="number" class="validate">
-                        <label for="survivor_gender">${'gender.title'|t}</label>
+                    <div class="input-field col s12 m12 l5">
+                        <div class="row">
+                            <label for="survivor_gender">${'gender.title'|t}</label>
+                            <div class="center">
+                                <ul id="survivor_gender" class="gender-choice">
+                                    <li>
+                                        <a 
+                                            md-button="floating: true;" 
+                                            md-waves="color: light; circle: true;" 
+                                            class="blue-grey lighten-5"                                     
+                                            click.delegate="gendersChoice('F')" 
+                                            md-tooltip="position: bottom; text.bind: lb_gender_f;">
+                                                <img src="images/gender-female.svg">
+                                        </a>                                    
+                                    </li>
+                                    <li>
+                                        <a 
+                                            md-button="floating: true;" 
+                                            md-waves="color: light; circle: true;" 
+                                            class="blue-grey lighten-5"                                     
+                                            click.delegate="gendersChoice('M')" 
+                                            md-tooltip="position: bottom; text.bind: lb_gender_m;">
+                                                <img src="images/gender-male.svg">
+                                        </a>                                    
+                                    </li>                                
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </div>                
                 <div class="row">
-                    <div class="col s12">
+                    <div class="col s12 m12 l12">
                         <label for="">${'inventory'|t}</label>
                         <div class="card-panel grey lighten-4 hoverable inventory">
                             <div class="row">
-                                <div class="col s2 left">  
+                                <div class="col s12 m12 l2 s-m-hide left">
                                     <span>${'item'|t} »</span><br><br><br>
                                     <span>${'quantity_abv'|t} »</span>
                                 </div>
-                                <div class="col s2 center" md-tooltip="position: top; text.bind: lb_water">
+                                <div class="col s12 m12 l2 center" md-tooltip="position: top; text.bind: lb_water">
                                     <img src="images/water.svg">
                                     <input id="_qtd_water" type="number" value.bind="qtd_water">
                                 </div>
-                                <div class="col s2 center" md-tooltip="position: top; text.bind: lb_food">
+                                <div class="col s12 m12 l2 center" md-tooltip="position: top; text.bind: lb_food">
                                     <img src="images/food.svg">
                                     <input id="_qtd_food" type="number" value.bind="qtd_food">
                                 </div>
-                                <div class="col s2 center" md-tooltip="position: top; text.bind: lb_medication">
+                                <div class="col s12 m12 l2 center" md-tooltip="position: top; text.bind: lb_medication">
                                     <img src="images/needle.svg">
                                     <input id="_qtd_medication" type="number" value.bind="qtd_medication">
                                 </div>
-                                <div class="col s2 center" md-tooltip="position: top; text.bind: lb_ammunition">
+                                <div class="col s12 m12 l2 center" md-tooltip="position: top; text.bind: lb_ammunition">
                                     <img src="images/pistol.svg">
                                     <input id="_qtd_ammunition" type="number" value.bind="qtd_ammunition">
-                                </div>
-                                <div class="col s2 center" md-tooltip="position: top; text.bind: lb_total">                                    
-                                    <span id="txt_total">${total_itens_points}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="card-panel blue lighten-5 s12 m12 l12" if.bind="gender">
+                        <p>Resumo:</p>
+                        <ul>
+                            <li>Nome: <strong>${name}</strong></li>
+                            <li>Idade: <strong>${age}</strong></li>
+                            <li>Gender: <strong>${'gender.desc'|t:{gender: gender}}</strong></li>
+                            <li>Localização: <strong>${$parent.coodinates}</strong></li>
+                        </ul>
+                        <img src="images/water.svg"> = ${qtd_water}&nbsp;
+                        <img src="images/food.svg"> = ${qtd_food}&nbsp;
+                        <img src="images/needle.svg"> = ${qtd_medication}&nbsp;
+                        <img src="images/pistol.svg"> = ${qtd_ammunition}&nbsp;
+                    </div>
+                </div>
             </div>
-            <div class="col s6">
+            <div class="col s12 m12 l6">
                 <label for="map">${'last_location'|t}</label>
                 <div id="map" class="map" tabindex="0" map></div>
             </div>
         </div>
         <div class="row">
-            <div class="col s12">
+            <div class="col s12 m12 l12">
+                <button                    
+                    class="waves-effect waves-light blue-grey lighten-1 btn"  
+                    click.delegate="cancel()">
+                        <i class="left material-icons">autorenew</i>
+                        &nbsp;${'clean_form'|t}
+                </button>
+                <button                    
+                    class="waves-effect waves-light primary right btn" 
+                    click.delegate="save()">
+                        <i class="left material-icons">cloud_upload</i>
+                        &nbsp;${'save'|t}
+                </button>                
             </div>
         </div>
     </div>

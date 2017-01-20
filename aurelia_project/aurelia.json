@@ -171,6 +171,38 @@
                         "path": "../node_modules/openlayers/dist",
                         "main": "ol"
                     },
+                    {
+                        "name": "hammerjs",
+                        "path": "../node_modules/hammerjs",
+                        "main": "hammer"
+                    },
+                    {
+                        "name": "jquery.hammer",
+                        "path": "../scripts/jquery.hammer"
+                    },
+                    {
+                        "name": "jquery.timeago",
+                        "path": "../scripts/jquery.timeago"
+                    },
+                    {
+                        "name": "pickerjs",
+                        "path": "../node_modules/pickerjs/dist",
+                        "main": "picker"
+                    },
+                    {
+                        "name": "velocity",
+                        "path": "../scripts/velocity.min"
+                    },
+                    {
+                        "name": "picker.date",
+                        "path": "../node_modules/pickadate/lib",
+                        "main": "picker.date"
+                    },
+                    {
+                        "name": "picker",
+                        "path": "../node_modules/pickadate/lib",
+                        "main": "picker"
+                    },
                     "jquery"
                 ]
             },

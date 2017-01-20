@@ -1,0 +1,15 @@
+@media all and (min-width: 600px) {
+    #navigation-zombie {
+        width: 8rem;
+    }
+}
+
+@media all and (max-width: 599px) {
+    #navigation-zombie {
+        width: 4rem;
+    }
+}
+
+#navigation-zombie-itens {
+    right: 10rem;
+}

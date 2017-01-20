@@ -1,8 +1,33 @@
-#txt_total{
+#txt_total {
     font-weight: bold;
     font-size: 4em;
 }
-.inventory input[type='number']{
+
+.inventory input[type='number'] {
     text-align: center;
     font-size: 2em;
+}
+
+.gender-choice {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: inline-flex;
+    /*float: right !important;
+    left: 5rem;
+    position: absolute; */
+}
+
+.gender-choice li {
+    display: block;
+    text-align: center;
+    padding: 16px;
+}
+
+.lb-genders-choice {
+    position: absolute;
+    float: left;
+    top: -10px;
+    left: 40%;
 }

@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - "6.0.0"
+before_script:
+  - npm install
+  - ./node_modules/.bin/r.js -o rbuild.js
+script:
+    - npm run build
+    - npm test
