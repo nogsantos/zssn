@@ -3,6 +3,8 @@ import { I18N } from 'aurelia-i18n';
 import { ResourceFactory } from '../../resources/system/resource-factory';
 /**
  * Survivors Form
+ * 
+ * @author Fabricio Nogueira
  */
 @autoinject()
 export class Form {
@@ -14,15 +16,27 @@ export class Form {
     private lb_total: string;
     private lb_gender_m: string;
     private lb_gender_f: string;
-    @bindable private location;
-    @bindable private gender;
-    @bindable private name;
-    @bindable private age;
-    @bindable private qtd_water: number;
-    @bindable private qtd_food: number;
-    @bindable private qtd_medication: number;
-    @bindable private qtd_ammunition: number;
-    @bindable private total_itens_points: number;
+    private gender_style: string;
+    private image: string;
+    private images = {
+        0: 'radioactive',
+        1: 'water-percent',
+        2: 'yin-yang',
+        3: 'keg',
+        4: 'ghost',
+    };
+    private survivor = {
+        name: null,
+        age: null,
+        gender: null,
+        location: null
+    };
+    private inventory = {
+        water: null,
+        food: null,
+        medication: null,
+        ammunition: null
+    };
     private inventory_items_point = {
         watter: 4,
         food: 3,
@@ -30,7 +44,7 @@ export class Form {
         ammunition: 1
     };
     /**
-     * 
+     * CDI
      */
     constructor(
         private i18n: I18N,
@@ -48,38 +62,52 @@ export class Form {
         this.lb_gender_f = `${this.i18n.tr('gender.F')}`;
         this.lb_gender_m = `${this.i18n.tr('gender.M')}`;
         this.lb_total = `${this.i18n.tr('total')}`;
-        this.total_itens_points = 0;
-        this.qtd_water = 0;
-        this.qtd_food = 0;
-        this.qtd_medication = 0;
-        this.qtd_ammunition = 0;
-    }
-
-    attached(){
-        console.log(this);
+        this.inventory.water = 0;
+        this.inventory.food = 0;
+        this.inventory.medication = 0;
+        this.inventory.ammunition = 0;
     }
     /**
-     * 
+     * Define de value of gender when user choice the gender
      */
     gendersChoice(choice: string): void {
-        this.gender = choice;
+        this.gender_style = choice === "F" ? 'pink' : 'blue';
+        this.survivor.gender = choice;
+        if (typeof this.image === "undefined") {
+            this.startImagesAnimation();
+        }
     }
     /**
      * 
      */
     save() {
-
+        console.log(this.survivor);
+        console.log(this.inventory);
     }
     /**
-     * 
+     * Prepare the form to add another survivor
      */
     cancel() {
-
+        Object.keys(this.survivor).forEach(key => {
+            this.survivor[key] = null;
+        });
+        Object.keys(this.inventory).forEach(key => {
+            this.inventory[key] = 0;
+        });
     }
     /**
      * 
      */
-    getCoordinates(cordinates){
-        console.log(cordinates);
+    getCoordinates(cordinates) {
+
+    }
+    /**
+     * Just an animation, maybe it can be cool...
+     */
+    startImagesAnimation() {
+        this.image = this.images[0];
+        setInterval(() => {
+            this.image = this.images[`${Math.floor((Math.random() * 4) + 1)}`];
+        }, 6000);
     }
 }

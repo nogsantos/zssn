@@ -1,5 +1,7 @@
 /**
- * Tratamento dos storages
+ * Tratamento para storages
+ * 
+ * @author Fabricio Nogueira 
  */
 export class Storage {
     /**

@@ -1,5 +1,6 @@
 /**
  * Configurações
+ * @author Fabricio Nogueira
  */
 export default {
     api: {
@@ -7,6 +8,7 @@ export default {
         resources: {
             survivor: "people.json",
             report: "report_infection.json"
-        }
+        },
+        key: "AIzaSyDVM7xQFkBSFFp9RhKcEeStD_hYkMHWwyw"
     }
-}
+};

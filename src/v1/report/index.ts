@@ -1,7 +1,9 @@
 import { autoinject } from 'aurelia-framework';
 import { I18N } from 'aurelia-i18n';
 /**
- * Report
+ * Report ?
+ * 
+ * @author Fabricio Nogueira  
  */
 @autoinject()
 export class Report {

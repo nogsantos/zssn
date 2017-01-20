@@ -2,7 +2,9 @@ import { Aurelia, autoinject } from 'aurelia-framework';
 import { NavigationInstruction, RouterConfiguration, AppRouter } from "aurelia-router";
 import { I18N } from 'aurelia-i18n';
 /**
- * Main rote
+ * App route
+ * 
+ * @author Fabricio Nogueira
  */
 @autoinject()
 export class App {

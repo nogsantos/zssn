@@ -1,0 +1,16 @@
+<template>
+    <div class="row card-panel grey lighten-4 hoverable">
+        <div ref="ref_map_view" class="col s12 m12 l12"></div>        
+        <div id="map-data" class="col s12 m12 l12">
+            <div class="row card-panel grey lighten-5">
+                <div class="col s12 m12 l6">
+                    <p>${'latitud'|t}: ${coodinates[1]}</p>
+                    <p>${'longitud'|t}: ${coodinates[0]}</p>                
+                </div>
+                <div class="col s12 m12 l6">
+                    <p if.bind="false">GPS Coordinates</p>
+                </div>
+            </div>            
+        </div>
+    </div>
+</template>

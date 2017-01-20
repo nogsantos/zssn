@@ -3,6 +3,8 @@ import { I18N } from 'aurelia-i18n';
 import { ResourceFactory } from '../../resources/system/resource-factory';
 /**
  * Survivors
+ *
+ * @author Fabricio Nogueira 
  */
 @autoinject()
 export class Survivor {

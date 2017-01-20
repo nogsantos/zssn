@@ -25,6 +25,9 @@
     "save": "Salvar",
     "clean_form": "Limpar formulário",
     "quantity_abv": "Qtd.",
+    "data": "Dados",
+    "latitud": "Latitude",
+    "longitud": "Longitude",
     "gender": {
         "title": "Sexo",
         "desc": "$t(gender.{{gender}})",
@@ -42,7 +45,7 @@
         "list": "Listagem de sobreviventes",
         "new": "Cadastrar novo sobrevivente",
         "form": {
-            "help": "Use o formulário abaixo registar os dados."
+            "help": "Use o formulário abaixo para registar os dados."
         }
     },
     "zombie": {

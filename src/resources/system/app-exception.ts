@@ -2,6 +2,8 @@ import { I18N } from 'aurelia-i18n';
 import { MdToastService } from 'aurelia-materialize-bridge';
 /**
  * Centralizar as exceções do app.
+ * 
+ * @author Fabricio Nogueira
  */
 export class AppException {
     private status_code?: number;
