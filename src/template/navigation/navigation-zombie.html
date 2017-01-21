@@ -5,16 +5,23 @@
             <img src="./images/zombie_cc.svg" id="navigation-zombie" md-tooltip="position: top; text.bind: zombie_speech">
         </a>
         <ul id="navigation-zombie-itens">
-            <li md-tooltip="position: top; text: Registrar um sobrevivente">
-                <a href="#/survivor/form/" class="btn-floating green">
-                    <i class="material-icons">add</i>
+            <li md-tooltip="position: top; text.bind: lb_index ">
+                <a 
+                    href="#/" 
+                    md-waves="color: light;"
+                    class="btn-floating green">
+                    <i class="material-icons">home</i>
                 </a>
             </li>
-            <li md-tooltip="position: top; text: Enviar uma menssagem">
-                <a href="#/survivor/form/" class="btn-floating red">
-                    <i class="material-icons">mail_outline</i>
-                </a>
-            </li>
+            <li repeat.for="row of router.navigation">
+                <a
+                    href.bind="row.href"                  
+                    md-waves="color: light;"
+                    class="btn-floating blue" 
+                    md-tooltip="position: top; text.bind: row.title">
+                    <i class="material-icons">${row.config.icon}</i>
+                </a>                
+            </li>            
         </ul>
     </div>
 </template>

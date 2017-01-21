@@ -4,7 +4,10 @@ import { ResourceFactory } from '../../resources/system/resource-factory';
 import { MdToastService } from 'aurelia-materialize-bridge';
 import env from '../../resources/system/env';
 /**
- * Survivors Form
+ * @description
+ *  Survivors Form
+ * @namespace 
+ *  V1/Survivor
  * 
  * @author Fabricio Nogueira
  */

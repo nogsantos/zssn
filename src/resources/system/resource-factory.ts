@@ -2,13 +2,16 @@ import { Http } from './http';
 import { AppException } from './app-exception';
 import { json } from 'aurelia-fetch-client';
 /**
- * Resource central factory
+ * @description
+ *  Resource central factory 
+ * @namespace 
+ *  System
  * 
  * @author Fabricio Nogueira
  */
 export class ResourceFactory {
     /**
-     * Put or Patch
+     * Post or Patch
      *
      * @param String resource The resource to send data
      * @param number | String id If, de id will patch

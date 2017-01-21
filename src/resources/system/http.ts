@@ -2,8 +2,11 @@ import { HttpClient } from 'aurelia-fetch-client';
 import { LogManager } from 'aurelia-framework';
 import env from './env';
 /**
- * Configuração Fetch client, centralizador para requisições ao serviço.  
- * 
+ * @description
+ *  Fetch configurations 
+ * @namespace 
+ *  System
+ *  
  * @author Fabricio Nogueira 
  */
 export class Http extends HttpClient {

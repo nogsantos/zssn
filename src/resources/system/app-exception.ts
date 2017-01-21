@@ -1,7 +1,11 @@
 import { I18N } from 'aurelia-i18n';
 import { MdToastService } from 'aurelia-materialize-bridge';
+import env from './env';
 /**
- * App request Exceptions
+ * @description
+ *  App request Exceptions 
+ * @namespace 
+ *  System
  * 
  * @author Fabricio Nogueira
  */
@@ -11,7 +15,6 @@ export class AppException {
     private i18n: I18N;
     private toast: MdToastService;
     /**
-     * CDI
      */
     constructor(msg?: string, status_code?: number) {
         this.i18n = new I18N();
@@ -35,6 +38,6 @@ export class AppException {
      * Respond
      */
     response() {
-        this.toast.show(this.i18n.tr(`error.respond`), 9000);       
+        this.toast.show(this.i18n.tr(`error.respond`), env.conf.messages.error.duration);
     }
 }

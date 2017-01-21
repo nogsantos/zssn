@@ -1,8 +1,11 @@
-import { Aurelia, autoinject } from 'aurelia-framework';
+import { autoinject } from 'aurelia-framework';
 import { NavigationInstruction, RouterConfiguration, AppRouter } from "aurelia-router";
 import { I18N } from 'aurelia-i18n';
 /**
- * App route
+ * @description
+ *  App route 
+ * @namespace 
+ *  src
  * 
  * @author Fabricio Nogueira
  */
@@ -10,7 +13,7 @@ import { I18N } from 'aurelia-i18n';
 export class App {
     private router: AppRouter;
     /**
-     *      
+     * CDI   
      */
     constructor(
         private i18n: I18N
@@ -43,8 +46,12 @@ export class App {
         config.map({
             route: 'survivor/form',
             name: 'SurvivorForm',
-            moduleId: 'v1/survivor/form',            
-            nav: false
+            moduleId: 'v1/survivor/form',
+            nav: true,
+            title: this.i18n.tr('survivor.new'),
+            href: "#/survivor/form",
+            icon: 'add',
+            id: "_survivor_form"
         });
         config.map({
             route: 'report',

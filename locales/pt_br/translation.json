@@ -52,7 +52,7 @@
         "desc": "$t(survivor.{{status}})",
         "true": "Infectado",
         "false": "Não infectado",
-        "list": "Listagem de sobreviventes",
+        "list": "Listar todos sobreviventes",
         "new": "Cadastrar novo sobrevivente",
         "form": {
             "help": "Use o formulário abaixo para registar os dados."
@@ -70,6 +70,11 @@
         }
     },
     "resources": "Recursos",
+    "storage": {
+        "error": "Seu armazenamento $t({{key}}) está desabilitado ou indisponível",
+        "local": "Armazenamento local",
+        "session": "Armazenamento de sessão"
+    },
     "report": "Relatórios",
     "home": "Início",
     "wellcome": "Bem vindo sobrevivente membro da resistência!"

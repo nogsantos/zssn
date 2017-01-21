@@ -5,7 +5,10 @@ import { I18N } from 'aurelia-i18n';
 import env from '../system/env';
 import * as OpenLayer from 'openlayers';
 /**
- * Map as element
+ * @description
+ *  Map as element
+ * @namespace 
+ *  Elements
  * 
  * @author Fabricio Nogueira
  */
@@ -100,7 +103,7 @@ export class Map {
         geolocation.on('error', error => { // handle geolocation error.
             this.loading = false;            
             let message = error.code === 1 ? this.i18n.tr(`map.error`) : error.message;
-            this.toast.show(message, 9000);
+            this.toast.show(message, env.conf.messages.error.duration);
         });
         /*
          * Measuring the Acuracy 

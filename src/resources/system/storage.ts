@@ -1,13 +1,24 @@
+import { autoinject } from 'aurelia-framework';
+import { I18N } from 'aurelia-i18n';
+import { MdToastService } from 'aurelia-materialize-bridge';
+import env from './env';
 /**
- * Tratamento para storages
+ * @description
+ *  Storage conf centralizer 
+ * @namespace 
+ *  System
  * 
  * @author Fabricio Nogueira 
  */
+@autoinject()
 export class Storage {
     /**
-     * 
+     * CDI
      */
-    constructor() {
+    constructor(
+        private i18n: I18N,
+        private toast: MdToastService
+    ) {
         this._getStorage();
     }
     /**
@@ -22,27 +33,32 @@ export class Storage {
         return false;
     }
     /**
-     * cadastra os storages
+     * Set the storages
+     * 
+     * @param String key The storage key
+     * @param String value The Value
      */
     set(key: string, value: string): void {
         localStorage.setItem(key, value);
         sessionStorage.setItem(key, value);
     }
     /**
-     * Remove os storages
+     * Removel the storage
+     * 
+     * @param String key the id of storage
      */
     remove(key: string): void {
         localStorage.clear();
-        sessionStorage.removeItem(key);       
+        sessionStorage.removeItem(key);
     }
     /**
-     * Verifica se há suporte para storage
+     * Just check if the storage it`s availible 
      */
     _getStorage(): void {
         if ('localStorage' in window && window.localStorage === null) {
-            throw new Error('Local Storage is disabled or unavailable.');
+            this.toast.show(this.i18n.tr(`storage.error`, { key: 'storage.local' }), env.conf.messages.error.duration);
         } else if ('sessionStorage' in window && window.sessionStorage === null) {
-            throw new Error('Session Storage is disabled or unavailable.');
+            this.toast.show(this.i18n.tr(`storage.error`, { key: 'storage.session' }), env.conf.messages.error.duration);
         }
     }
 }

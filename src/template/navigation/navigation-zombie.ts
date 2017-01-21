@@ -1,18 +1,21 @@
+import { bindable } from 'aurelia-framework';
 import { autoinject } from 'aurelia-framework';
 import { I18N } from 'aurelia-i18n';
 /**
- * Zombie as a helper
+ * @description
+ *  Using Zombie as a helper 
+ * @namespace 
+ *  Template/Navigation
+ * 
+ * @author Fabricio Nogueira
  */
 @autoinject()
 export class NavigationZombie {
-    private about: string;
-    private about_info: string;
-    private author: string;
-    private web_address: string;
-    private technologies: string;
-    private zombie_speech: string;
+    @bindable router;
+    private zombie_speech: string;    
+    private lb_index: string;
     /**
-     * Dependency injections
+     * CDI
      */
     constructor(
         private i18n: I18N
@@ -20,13 +23,9 @@ export class NavigationZombie {
     /**
      * The view also ben created
      */
-    created(): void {
-        this.about = this.i18n.tr('about');
-        this.about_info = this.i18n.tr('about_info');
-        this.author = this.i18n.tr('author');
-        this.web_address = this.i18n.tr('web_address');
-        this.technologies = this.i18n.tr('technologies');
-        this.zombie_speech = this.i18n.tr(`zombie.speech.${0}`);
+    created() {
+        this.zombie_speech = this.i18n.tr(`zombie.speech.${0}`);        
+        this.lb_index = this.i18n.tr('home');        
         this.zombieSpeechs();
     }
     /**

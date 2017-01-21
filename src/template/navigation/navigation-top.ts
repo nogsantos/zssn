@@ -1,6 +1,11 @@
 import { bindable } from 'aurelia-framework';
 /**
- * NavBar
+ * @description
+ *  Navigation Top 
+ * @namespace 
+ *  Template/Navigation
+ * 
+ * @author Fabricio Nogueira
  */
 export class NavigationTop {
     @bindable router;

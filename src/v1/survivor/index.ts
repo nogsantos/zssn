@@ -1,8 +1,12 @@
 import { autoinject } from 'aurelia-framework';
 import { I18N } from 'aurelia-i18n';
 import { ResourceFactory } from '../../resources/system/resource-factory';
+import env from '../../resources/system/env';
 /**
- * Survivors
+ * @description
+ *  Survivors Index
+ * @namespace 
+ *  V1/Survivor
  *
  * @author Fabricio Nogueira 
  */
@@ -30,7 +34,7 @@ export class Survivor {
      * Fetch all data
      */
     fetchAll(): void {
-        this.resource.query('people.json').then(response => {
+        this.resource.query(env.api.resources.survivor).then(response => {
             if (response.length > 0) {
                 this.survivors = response;
                 this.is_loading = false;

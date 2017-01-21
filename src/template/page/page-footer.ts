@@ -1,7 +1,12 @@
 import { autoinject } from 'aurelia-framework';
 import { I18N } from 'aurelia-i18n';
 /**
- * Footer
+ * @description
+ *  Footer 
+ * @namespace 
+ *  Template/Page
+ * 
+ * @author Fabricio Nogueira
  */
 @autoinject()
 export class PageFooter {

@@ -1,7 +1,10 @@
 import { autoinject } from 'aurelia-framework';
 import { I18N } from 'aurelia-i18n';
 /**
- * About controller
+ * @description
+ *   About controller 
+ * @namespace 
+ *  V1/About
  * 
  * @author Fabricio Nogueira
  */
@@ -13,13 +16,13 @@ export class About {
     private web_address: string;
     private technologies: string;
     /**
-     * 
+     * CDI
      */
     constructor(
         private i18n: I18N
     ) { }
     /**
-     * 
+     * View Created
      */
     created(): void {
         this.title = this.i18n.tr('about');

@@ -1,6 +1,9 @@
 import { customElement, bindable } from 'aurelia-framework';
 /**
- * Just dots
+ * @description
+ *  Just dots 
+ * @namespace 
+ *  Elements
  * 
  * @author Fabricio Nogueira
  */
