@@ -1,4 +1,8 @@
-import { inject, customElement, DOM, bindable } from 'aurelia-framework';
+import { autoinject, customElement, bindable } from 'aurelia-framework';
+import { ResourceFactory } from '../system/resource-factory';
+import { MdToastService } from 'aurelia-materialize-bridge';
+import { I18N } from 'aurelia-i18n';
+import env from '../system/env';
 import * as OpenLayer from 'openlayers';
 /**
  * Map as element
@@ -6,46 +10,56 @@ import * as OpenLayer from 'openlayers';
  * @author Fabricio Nogueira
  */
 @customElement('map')
-@inject(DOM.Element)
+@autoinject()
 export class Map {
-    private element: any;
+    private resource: ResourceFactory;
+    private loading: boolean;
     private ref_map_view: Element;
-    private map: OpenLayer.Map;    
+    private map: OpenLayer.Map;
     private source: OpenLayer.source.Vector;
+    private address: String;
+    private parent: any;
+    private map_help: string;
     @bindable coodinates: Array<any>;
     /**
      * CDI
      */
-    constructor(element) {
-        this.element = element;
-        this.source = new OpenLayer.source.Vector({ wrapX: false });        
-    }    
+    constructor(
+        private toast: MdToastService,
+        public i18n: I18N
+    ) {
+        this.loading = true;
+    }
+    /**
+     * Get parent attributs
+     */
+    bind(bindingContext) {
+        this.parent = bindingContext;
+        this.map_help = this.i18n.tr('map.help');
+    }
     /**
      * When attached, create the map with current location
      */
     attached() {
-         const view = new OpenLayer.View({
+        this.source = new OpenLayer.source.Vector({ wrapX: false });
+        const view = new OpenLayer.View({
             projection: 'EPSG:4326',
             center: [0, 0],
             zoom: 2
         });
         /*
          */
-        // const raster = new OpenLayer.layer.Tile({
-        //     source: new OpenLayer.source.OSM()
-        // });
-        // const vector = new OpenLayer.layer.Vector({
-        //     source: this.source
-        // });
+        let raster = new OpenLayer.layer.Tile({
+            source: new OpenLayer.source.OSM()
+        });
+        let vector = new OpenLayer.layer.Vector({
+            source: this.source
+        });
         /*
          * Initialize the map 
          */
         this.map = new OpenLayer.Map({
-            layers: [
-                new OpenLayer.layer.Tile({
-                    source: new OpenLayer.source.OSM()
-                })
-            ],
+            layers: [raster, vector],
             target: this.ref_map_view,
             controls: OpenLayer.control.defaults({
                 attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
@@ -61,6 +75,7 @@ export class Map {
         this.enableToSetNewPosition(m => {
             m.on('singleclick', evt => {
                 this.coodinates = evt.coordinate;
+                this.getAddress();
             });
         });
         /*
@@ -78,11 +93,14 @@ export class Map {
         geolocation.setTracking(typeof when_attached !== "undefined" ? when_attached : true);
         geolocation.on('change', () => { // Set the current location in coodinates param
             view.setZoom(10);
-            view.setCenter(geolocation.getPosition());            
+            view.setCenter(geolocation.getPosition());
             this.coodinates = JSON.parse(`[${geolocation.getPosition()}]`);
+            this.getAddress();
         });
-        geolocation.on('error', (error) => { // handle geolocation error.         
-            console.log(error.message);
+        geolocation.on('error', error => { // handle geolocation error.
+            this.loading = false;            
+            let message = error.code === 1 ? this.i18n.tr(`map.error`) : error.message;
+            this.toast.show(message, 9000);
         });
         /*
          * Measuring the Acuracy 
@@ -137,13 +155,13 @@ export class Map {
     enableToSetNewPosition(callback: Function): void {
         let draw = new OpenLayer.interaction.Draw({
             source: this.source,
-            type: /** @type {OpenLayer.geom.GeometryType} */ "Circle"
+            type: /** @type {OpenLayer.geom.GeometryType} */ "Point"
         });
         this.map.addInteraction(draw);
         callback(this.map);
     }
     /*
-     * Just puting my name on map!
+     * Just putting my name on map!
      */
     getLogo(): HTMLAnchorElement {
         const logoElement = document.createElement('a');
@@ -153,5 +171,22 @@ export class Map {
         logoImage.textContent = 'Fabricio Nogueira';
         logoElement.appendChild(logoImage);
         return logoElement;
+    }
+    /**
+     * Load address by coodinates from google maps
+     */
+    getAddress() {
+        this.address = "";
+        this.resource = new ResourceFactory();
+        this.parent.survivor.location = this.coodinates;
+        this.resource.query(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.coodinates[1]},${this.coodinates[0]}&key=${env.api.key}`)
+            .then(response => {
+                if (response.status === "OK") {
+                    this.address = response.results[0].formatted_address;
+                }
+                this.loading = false;
+            }).catch(error => {
+                this.loading = false;
+            });
     }
 }

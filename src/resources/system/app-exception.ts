@@ -1,7 +1,7 @@
 import { I18N } from 'aurelia-i18n';
 import { MdToastService } from 'aurelia-materialize-bridge';
 /**
- * Centralizar as exceções do app.
+ * App request Exceptions
  * 
  * @author Fabricio Nogueira
  */
@@ -11,7 +11,7 @@ export class AppException {
     private i18n: I18N;
     private toast: MdToastService;
     /**
-     * 
+     * CDI
      */
     constructor(msg?: string, status_code?: number) {
         this.i18n = new I18N();
@@ -20,21 +20,21 @@ export class AppException {
         this.status_code = status_code;
     }
     /**
-     * Falha na sincronização com o serviço
+     * Fetch
      */
     toFailedToFetch(): string {
-        return `${this.i18n.tr('global.exception.fetch')} ${this.msg || ''}`;
+        return `${this.i18n.tr('erro.fetch')} ${this.msg || ''}`;
     }
     /**
-     * Resposta do serviço
+     * Service
      */
     toServiceRespond(): string {
-        return `${this.i18n.tr('global.exception.service_message', { response: `$t(${this.msg.toString().replace("Error: ", "")})` })}`;
+        return `${this.i18n.tr('error.service')}: ${this.msg}`;
     }
     /**
-     * Retorna a menssagem de erro para o usuário de acordo com a resposta do serviço.
+     * Respond
      */
     response() {
-        this.toast.show(this.i18n.tr(`service.error.code.${this.status_code}`), 6000);       
+        this.toast.show(this.i18n.tr(`error.respond`), 9000);       
     }
 }

@@ -16,13 +16,13 @@ export class Http extends HttpClient {
             config
                 .withBaseUrl(env.api.address)
                 .withDefaults({
+                    credentials: 'same-origin',
                     headers: {
-                        'Accept': 'application/json',
-                        'X-Requested-With': 'Fetch'
+                        'Accept': 'application/json'
                     }
                 })
                 .withInterceptor({
-                    request(request) {
+                    request(request) {                        
                         log.debug(`Request: ${request.method} ${request.url}`);
                         return request;
                     },

@@ -30,7 +30,7 @@ export class Survivor {
      * Fetch all data
      */
     fetchAll(): void {
-        this.resource.query('people.json', null, null).then(response => {
+        this.resource.query('people.json').then(response => {
             if (response.length > 0) {
                 this.survivors = response;
                 this.is_loading = false;

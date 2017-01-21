@@ -27,7 +27,17 @@
     "quantity_abv": "Qtd.",
     "data": "Dados",
     "latitud": "Latitude",
-    "longitud": "Longitude",
+    "address": "Endereço",
+    "longitud": "Longitude",    
+    "error": {
+        "fetch":"Erro na sincronização",
+        "service":"Erro na comunicação com o serviço",
+        "respond":"Há erros em sua requisição"
+    },    
+    "map": {
+        "error": "A geolocalização não está habilitada em seu navegado. Clique em um ponto do mapa para obter as coordenadas.",
+        "help": "Caso as coordenadas localizadas não estejam corretas, basta clicar em um ponto do mapa.<br>Sempre a última coordenada que for selecionada, será a que fará parte do cadastro."
+    },
     "gender": {
         "title": "Sexo",
         "desc": "$t(gender.{{gender}})",

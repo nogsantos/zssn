@@ -1,6 +1,8 @@
-import { autoinject, bindable } from 'aurelia-framework';
+import { autoinject } from 'aurelia-framework';
 import { I18N } from 'aurelia-i18n';
 import { ResourceFactory } from '../../resources/system/resource-factory';
+import { MdToastService } from 'aurelia-materialize-bridge';
+import env from '../../resources/system/env';
 /**
  * Survivors Form
  * 
@@ -32,10 +34,10 @@ export class Form {
         location: null
     };
     private inventory = {
-        water: null,
-        food: null,
-        medication: null,
-        ammunition: null
+        Water: null,
+        Food: null,
+        Medication: null,
+        Ammunition: null
     };
     private inventory_items_point = {
         watter: 4,
@@ -48,6 +50,7 @@ export class Form {
      */
     constructor(
         private i18n: I18N,
+        private toast: MdToastService,
         private resource: ResourceFactory
     ) { }
     /**
@@ -62,10 +65,10 @@ export class Form {
         this.lb_gender_f = `${this.i18n.tr('gender.F')}`;
         this.lb_gender_m = `${this.i18n.tr('gender.M')}`;
         this.lb_total = `${this.i18n.tr('total')}`;
-        this.inventory.water = 0;
-        this.inventory.food = 0;
-        this.inventory.medication = 0;
-        this.inventory.ammunition = 0;
+        this.inventory.Water = 0;
+        this.inventory.Food = 0;
+        this.inventory.Medication = 0;
+        this.inventory.Ammunition = 0;
     }
     /**
      * Define de value of gender when user choice the gender
@@ -78,11 +81,31 @@ export class Form {
         }
     }
     /**
-     * 
+     * Will try to persist the information
      */
     save() {
-        console.log(this.survivor);
-        console.log(this.inventory);
+        let objetcToSave = {
+            name: this.survivor.name,
+            age: this.survivor.age,
+            gender: this.survivor.gender,
+            lonlat: `POINT (${this.survivor.location[1] || 0} ${this.survivor.location[0] || 0})`,
+            items: this.itensPattern()
+        };        
+        this.resource.send(`${env.api.resources.survivor}`, null, objetcToSave).then(response => {
+            console.log(response);
+        }).catch(error => {
+            console.error(error);
+        });
+    }
+    /**
+     * Make objetc items inventory to service pattern
+     */
+    itensPattern(): string {
+        let inventory_pattern = "";
+        Object.keys(this.inventory).forEach(key => {
+            inventory_pattern += '' + key + ':' + this.inventory[key] + ';';
+        });
+        return inventory_pattern.replace(/;$/, "");
     }
     /**
      * Prepare the form to add another survivor
@@ -94,12 +117,6 @@ export class Form {
         Object.keys(this.inventory).forEach(key => {
             this.inventory[key] = 0;
         });
-    }
-    /**
-     * 
-     */
-    getCoordinates(cordinates) {
-
     }
     /**
      * Just an animation, maybe it can be cool...
