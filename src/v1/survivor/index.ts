@@ -14,7 +14,7 @@ import env from '../../resources/system/env';
 export class Survivor {
     private title: string;
     private survivors: Object;
-    private is_loading: boolean;
+    private is_loading: boolean;    
     /**
      * Dependency injections
      */
@@ -23,19 +23,27 @@ export class Survivor {
         private resource: ResourceFactory
     ) { }
     /**
+     * When view-model is activeted
+     */
+    activate(params, navigationInstruction) {        
+        if(navigationInstruction.id === "_survivor"){
+            this.fetchAll();
+        }        
+    }
+    /**
      * The view also ben created
      */
     created(): void {
         this.title = this.i18n.tr(`survivor.list`);
-        this.is_loading = true;
-        this.fetchAll();
     }
     /**
-     * Fetch all data
+     * Fetch all data when the user came to all 
+     * or when called by a button
      */
     fetchAll(): void {
+        this.is_loading = true;
         this.resource.query(env.api.resources.survivor).then(response => {
-            if (response.length > 0) {                
+            if (response.length > 0) {
                 this.survivors = response;
                 this.is_loading = false;
             } else {

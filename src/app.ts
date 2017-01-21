@@ -38,10 +38,20 @@ export class App {
             name: 'Survivor',
             moduleId: 'v1/survivor/index',
             nav: true,
-            title: this.i18n.tr('survivor.list'),
+            title: this.i18n.tr('survivor.nav'),
             href: "#/survivor",
             icon: 'accessibility',
             id: "_survivor"
+        });
+        config.map({
+            route: 'survivor/search',
+            name: 'SurvivorSearch',
+            moduleId: 'v1/survivor/index',
+            nav: true,
+            title: this.i18n.tr('survivor.search'),
+            href: "#/survivor/search",
+            icon: 'search',
+            id: "_survivor_search"
         });
         config.map({
             route: 'survivor/form',
@@ -52,17 +62,7 @@ export class App {
             href: "#/survivor/form",
             icon: 'add',
             id: "_survivor_form"
-        });
-        config.map({
-            route: 'report',
-            name: 'Report',
-            moduleId: 'v1/report/index',
-            nav: true,
-            title: this.i18n.tr('report'),
-            href: "#/report",
-            icon: 'content_paste',
-            id: "_report"
-        });
+        });        
         config.map({
             route: 'about',
             name: 'About',
@@ -84,6 +84,7 @@ export class App {
             instruction.config.href = instruction.fragment;
         };
         config.mapUnknownRoutes(navStrat);
+        config.fallbackRoute('index');
         this.router = router;
     }
 

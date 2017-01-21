@@ -68,7 +68,10 @@
         "desc": "$t(survivor.{{status}})",
         "true": "Infectado",
         "false": "Não infectado",
-        "list": "Listar todos sobreviventes",
+        "nav": "Listar todos sobreviventes",
+        "search": "Localizar um sobrevivente",
+        "list": "Listagem de sobreviventes",
+        "list_sub": "Não somente sobreviventes, infectados também serão listados",
         "new": "Cadastrar novo sobrevivente",
         "form": {
             "help": "Use o formulário abaixo para registar os dados."

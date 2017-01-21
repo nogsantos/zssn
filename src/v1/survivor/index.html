@@ -1,12 +1,14 @@
 <template>
-    <p class="flow-text">${title}</p>
+    <p class="flow-text">${title} <small>» ${'survivor.list_sub'|t}</small></p></p>
     <div class="section card-panel white z-depth-2">
-        ${'survivor.info'|t}
+        <p>busca por id</p>
+        <p>busca por nome</p>
+        <p>Listar todos</p>
     </div>
     <div class="progress" if.bind="is_loading">
         <div class="indeterminate"></div>
     </div>
-    <ul class="collection">
+    <ul class="collection" if.bind="survivors">
         <li class="collection-item avatar hoverable" repeat.for="survivor of survivors">
             <img src="images/${survivor['infected?'] ?'skull' : 'face'}.svg" class="circle ${survivor['infected?'] ?'red' : 'green'} z-depth-3">
             <span class="title">${'survivor.status'|t}: ${'survivor.desc'|t:{status: survivor['infected?']}}</span>
