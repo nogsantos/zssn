@@ -35,7 +35,7 @@ export class Survivor {
      */
     fetchAll(): void {
         this.resource.query(env.api.resources.survivor).then(response => {
-            if (response.length > 0) {
+            if (response.length > 0) {                
                 this.survivors = response;
                 this.is_loading = false;
             } else {

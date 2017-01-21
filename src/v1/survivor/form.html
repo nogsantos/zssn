@@ -4,7 +4,7 @@
     <div class="section card-panel white z-depth-2">
         <div class="row">
             <div class="col s12 m12 l6">
-                <label for="">${'data'|t}</label>
+                <label class="flow-text">${'data'|t}</label>
                 <div class="card-panel grey lighten-4 hoverable">
                     <div class="row">
                         <div class="input-field col s12 m12 l5">
@@ -54,7 +54,7 @@
                 </div>       
                 <div class="row">
                     <div class="col s12 m12 l12">
-                        <label for="">${'inventory'|t}</label>
+                        <label class="flow-text">${'inventory'|t}</label>
                         <div class="card-panel grey lighten-4 hoverable inventory">
                             <div class="row">
                                 <div class="col s12 m12 l2 s-m-hide left">
@@ -80,10 +80,18 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="row" if.bind="message.body">
+                    <div class="col s12 m12 l12">
+                        <label class="flow-text">${message.title}</label>
+                        <div class="card-panel ${message.style} lighten-5 hoverable">                            
+                            <ul><li repeat.for="item of message.body" innerhtml.bind="item"></li></ul>
+                        </div>
+                    </div>
                 </div>                
             </div>
             <div class="col s12 m12 l6">
-                <label for="map">${'last_location'|t}</label>                
+                <label class="flow-text">${'last_location'|t}</label>                
                 <map></map>
             </div>
         </div>
@@ -97,6 +105,17 @@
                 </button>
             </div>
             <div class="col s12 m12 l2 push-l7">
+                <div class="preloader-wrapper small active" if.bind="is_loading">
+                    <div class="spinner-layer spinner-green-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                    </div>
+                </div>
                 <button                    
                     class="waves-effect waves-light primary right btn s-m-full-line" 
                     click.delegate="save()">

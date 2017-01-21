@@ -28,12 +28,28 @@
     "data": "Dados",
     "latitud": "Latitude",
     "address": "Endereço",
-    "longitud": "Longitude",    
+    "longitud": "Longitude",
+    "success": {
+        "add": "Cadastrado com sucesso",
+        "survivor_id": "Código identificador do sobrevivente"
+
+    },
     "error": {
-        "fetch":"Erro na sincronização",
-        "service":"Erro na comunicação com o serviço",
-        "respond":"Há erros em sua requisição"
-    },    
+        "age": "Campo [<b>Idade</b>]",
+        "name": "Campo [<b>Nome</b>]",
+        "gender": "Campo [<b>Sexo</b>]",
+        "fetch": "Erro na sincronização",
+        "service": "Erro na comunicação com o serviço",
+        "has already been taken": "Já está cadastrado no sistema",
+        "can't be blank": "Não pode estar em branco",
+        "is not a number": "Não é um número válido",
+        "is not included in the list": "Não está incluso na lista de valores permitidos",
+        "must be greater than 1": "Precisa ser maior do que 1",
+        "can't be blank,is not a number": "Não pode estar em branco e Não é um número válido",
+        "can't be blank,is not included in the list": "Não pode estar em branco e Não está incluso na lista de valores permitidos",
+        "respond": "Há erros em sua requisição",
+        "unknow": "Desculpe, erro desconhecido"
+    },
     "map": {
         "error": "A geolocalização não está habilitada em seu navegado. Clique em um ponto do mapa para obter as coordenadas.",
         "help": "Caso as coordenadas localizadas não estejam corretas, basta clicar em um ponto do mapa.<br>Sempre a última coordenada que for selecionada, será a que fará parte do cadastro."
@@ -77,5 +93,74 @@
     },
     "report": "Relatórios",
     "home": "Início",
+    "req_status": {
+        "info": {
+            "title": "Informação",
+            "100": "Continuar",
+            "101": "Mudança de protocolos",
+            "122": "Pedido-URI muito longo"
+        },
+        "sucess": {
+            "title": "Sucesso",
+            "200": "Solicitação Ok",
+            "201": "Solicitação Criada",
+            "202": "Solicitação Aceita",
+            "203": "Solicitação Aceita, porém não autorizada",
+            "204": "Solicitação não processou nenhum conteúdo",
+            "205": "Solicitação processada com sucesso, mas sem retorno de conteúdo",
+            "206": "Solicitação processada com sucesso, retornando conteúdo parcial",
+            "207": "Status Multi (WebDAV) (RFC 4918)"
+        },
+        "redirect": {
+            "title": "Redirecionamento",
+            "300": "Múltipla escolha Indica várias opções para o recurso que o cliente pode acompanhar",
+            "301": "Movido Esta e todas as solicitações futuras devem ser direcionada para o URI",
+            "302": "Encontrado",
+            "304": "Não modificado Indica que o recurso não foi modificado desde o último pedido",
+            "305": "Use Proxy",
+            "306": "Proxy Switch",
+            "307": "Redirecionamento temporário"
+        },
+        "error": {
+            "400": {
+                "title": "Erro na solicitação",
+                "400": "Requisição inválida",
+                "401": "Não autorizado",
+                "402": "Pagamento necessário",
+                "403": "Proibido",
+                "404": "Não encontrado",
+                "405": "Método não permitido",
+                "406": "Não Aceitável",
+                "407": "Autenticação de proxy necessária",
+                "408": "Tempo de requisição esgotou (Timeout)",
+                "409": "Conflito a solicitação não pôde ser processada por causa do conflito no pedido",
+                "410": "O recurso solicitado não está mais disponível e não estará disponível novamente.",
+                "411": "O pedido não especifica o comprimento do seu conteúdo, o que é exigido pelo recurso solicitado.",
+                "412": "O servidor não cumpre uma das condições que o solicitante coloca na solicitação",
+                "413": "É maior do que o servidor está disposto ou é capaz de processar",
+                "414": "O URI fornecido foi muito longo para ser processado pelo servidor",
+                "415": "Tipo de mídia não suportado",
+                "416": "O item solicitado não pode ser fornecido pelo serviço",
+                "417": "O servidor não pode cumprir as exigências do campo de cabeçalho",
+                "418": "Eu sou um bule de chá",
+                "422": "Itens obrigatórios não foram informados",
+                "423": "O recurso que está sendo solicitado está bloqueado",
+                "424": "Falhou devido à falha de uma solicitação anterior",
+                "425": "Coleção não ordenada (RFC 3648)",
+                "426": "Atualização Obrigatória (RFC 2817)",
+                "450": "Bloqueados pelo Windows Controles dos Pais",
+                "499": "Cliente fechou Pedido (utilizado em ERPs/VPSA)"
+            },
+            "500": {
+                "title": "Erro do serviço",
+                "500": "Erro interno do serviço",
+                "501": "Não implementado",
+                "502": "Porta de entrada da requisição com problema",
+                "503": "Serviço indisponível",
+                "504": "Tempo de solicitação expirado",
+                "505": "Versão HTTP não suportada"
+            }
+        }
+    },
     "wellcome": "Bem vindo sobrevivente membro da resistência!"
 }

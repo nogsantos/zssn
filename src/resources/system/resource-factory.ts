@@ -1,6 +1,8 @@
 import { Http } from './http';
 import { AppException } from './app-exception';
 import { json } from 'aurelia-fetch-client';
+import { EventAggregator } from 'aurelia-event-aggregator';
+import { HttpRequestStatus } from './http-request-status';
 /**
  * @description
  *  Resource central factory 
@@ -9,7 +11,7 @@ import { json } from 'aurelia-fetch-client';
  * 
  * @author Fabricio Nogueira
  */
-export class ResourceFactory {
+export class ResourceFactory {    
     /**
      * Post or Patch
      *
@@ -27,6 +29,7 @@ export class ResourceFactory {
             .then(this.checkStatus)
             .then(this.parseJSON)
             .then(response => {
+                new EventAggregator().subscribe(HttpRequestStatus, done => {});
                 return response;
             })
             .catch(error => {
@@ -34,7 +37,7 @@ export class ResourceFactory {
                 return;
             });
         return Promise.resolve(addPromise);
-    }   
+    }
     /**
      * Query     
      * 
@@ -60,9 +63,7 @@ export class ResourceFactory {
      * Requisition status return
      */
     private checkStatus(response) {
-        if (response.status >= 400) {
-            new AppException(null, response.status).response(); // enviando apenas o código para a excessão.
-        }
+        new EventAggregator().publish(new HttpRequestStatus(response.status));
         return response;
     }
     /**

@@ -1,6 +1,5 @@
 import { I18N } from 'aurelia-i18n';
 import { MdToastService } from 'aurelia-materialize-bridge';
-import env from './env';
 /**
  * @description
  *  App request Exceptions 
@@ -16,7 +15,7 @@ export class AppException {
     private toast: MdToastService;
     /**
      */
-    constructor(msg?: string, status_code?: number) {
+    constructor(msg?: string, status_code?: number) {       
         this.i18n = new I18N();
         this.toast = new MdToastService();
         this.msg = msg;
@@ -33,11 +32,5 @@ export class AppException {
      */
     toServiceRespond(): string {
         return `${this.i18n.tr('error.service')}: ${this.msg}`;
-    }
-    /**
-     * Respond
-     */
-    response() {
-        this.toast.show(this.i18n.tr(`error.respond`), env.conf.messages.error.duration);
     }
 }
