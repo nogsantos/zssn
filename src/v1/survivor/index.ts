@@ -1,7 +1,8 @@
-import { autoinject } from 'aurelia-framework';
+import { autoinject, bindable } from 'aurelia-framework';
 import { I18N } from 'aurelia-i18n';
 import { ResourceFactory } from '../../resources/system/resource-factory';
 import env from '../../resources/system/env';
+import * as $ from 'jquery';
 /**
  * @description
  *  Survivors Index
@@ -14,7 +15,9 @@ import env from '../../resources/system/env';
 export class Survivor {
     private title: string;
     private survivors: Object;
-    private is_loading: boolean;    
+    private is_loading: boolean;
+    private ref_survivors_list;
+    @bindable private ref_search_by_name;
     /**
      * Dependency injections
      */
@@ -25,16 +28,37 @@ export class Survivor {
     /**
      * When view-model is activeted
      */
-    activate(params, navigationInstruction) {        
-        if(navigationInstruction.id === "_survivor"){
+    activate(params, navigationInstruction) {
+        if (navigationInstruction.id === "_survivor") {
             this.fetchAll();
-        }        
+        }
     }
     /**
      * The view also ben created
      */
     created(): void {
         this.title = this.i18n.tr(`survivor.list`);
+    }
+    /**
+     * Possible to search for a survivor by name
+     */
+    bind() {
+        $(this.ref_search_by_name).keyup(event => {
+            let val = '^(?=.*\\b' + $.trim(this.ref_search_by_name.value).split(/\s+/).join('\\b)(?=.*\\b') + ').*$';
+            let reg = RegExp(val, 'i');
+            let text;
+            $(this.ref_survivors_list).show().filter(() => {
+                text = $(this.ref_survivors_list).text().replace(/\s+/g, ' ');
+                return !reg.test(text);
+            }).hide();
+            // let search = $.grep(this.survivors, field => {
+            //     return field.name == this.ref_search_by_name.value;
+            // });
+            // console.log(search);
+            // if (search.lenght > 0) {
+            //     $(this.ref_survivors_list).fadeOut();
+            // }
+        });
     }
     /**
      * Fetch all data when the user came to all 
