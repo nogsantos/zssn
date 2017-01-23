@@ -1,5 +1,6 @@
 <template>
-    <div class="row">
+    <require from="./index.css"></require>
+    <div class="row" id="_survivor_index">
         <div class="row">
             <div class="col s12 m12 l12">
                 <span class="flow-text">${title} <small>» ${'survivor.list_sub'|t}</small></span>
@@ -9,46 +10,130 @@
             <div class="col s12 m12 l12">
                 <div class="section card-panel white z-depth-2">
                     <div class="row">
-                        <div class="col s12 m12 l6">
-                            <div class="row">
-                                <div class="input-field col s12 m12 l12">
-                                    <i class="material-icons prefix">account_circle</i>
-                                    <input id="_search_by_name" ref="ref_search_by_name" type="text" class="validate">
-                                    <label for="_search_by_name">${'name'|t}</label>
-                                </div>                                
-                            </div>
-                        </div>
-                        <div class="col s12 m12 l6">
-                            <div class="row">
-                                <div class="col s12 m12 l12">
-                                    some actions
-                                </div>
-                            </div>
+                        <div class="col s12 m12 l12">
+                            ${'survivor.info'|t}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row" if.bind="is_loading">
-            <div class="col s12 m12 l12">
-                <div class="progress">
-                    <div class="indeterminate"></div>
-                </div>
-            </div>
-        </div>
         <div class="row">
             <div class="col s12 m12 l12">
-                <ul class="collection" if.bind="survivors" ref="ref_survivors_list">
-                    <li class="collection-item avatar hoverable" repeat.for="survivor of survivors">
-                        <img src="images/${survivor['infected?'] ?'skull' : 'face'}.svg" class="circle ${survivor['infected?'] ?'red' : 'green'} z-depth-3">
-                        <span class="title">${'survivor.status'|t}: ${'survivor.desc'|t:{status: survivor['infected?']}}</span>
-                        <p>${'name'|t}: ${survivor.name}</p>
-                        <p>${'age'|t}: ${survivor.age}</p>
-                        <p>${'gender.title'|t}: ${'gender.desc'|t:{gender: survivor.gender}}</p>
-                        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                <ul md-tabs class="z-depth-1">
+                    <li md-waves="color: green;">
+                        <a class="active" href="#tab_not_infected">
+                            <img class="tab-icon" src="images/face.svg">&nbsp;${'survivor.false'|t}<small><i>&nbsp;(${count_not_infected}<three-dots letsdot.bind="is_loading"></three-dots>)</i></small>
+                        </a>
+                    </li>
+                    <li md-waves="color: red;">
+                        <a href="#tab_infected" class="right">
+                            <img class="tab-icon" src="images/skull.svg">&nbsp;${'survivor.true'|t}<small><i>&nbsp;(${count_infected}<three-dots letsdot.bind="is_loading"></three-dots>)</i></small>
+                        </a>
                     </li>
                 </ul>
             </div>
+            <div id="tab_not_infected" class="tab-content col s12 m12 l12">
+                <div class="section card-panel white z-depth-2">
+                    <div class="row">
+                        <div class="col s10 m10 l6 left">
+                            <div class="input-field">
+                                <i class="material-icons prefix">search</i>
+                                <input 
+                                    type="text" 
+                                    id="_search_by_name" 
+                                    ref="ref_search_by_name"
+                                    keyup.delegate="inputCleanToggle()" 
+                                    enter-press.call="searchNotInfectedByName()"
+                                    md-tooltip="position: bottom; text.bind: txt_search_help;"
+                                    value.two-way="query_not_infected">
+                                <label for="_search_by_name">${'search_by_name'|t}</label>
+                                <i
+                                    if.bind="show_bt_clean"                                                    
+                                    md-tooltip="position: top; text.bind: txt_bt_clean_help;"
+                                    click.delegate="resetNotInfectedSearch()"
+                                    class="material-icons search-clean">clear</i>
+                                <div class="preloader-wrapper small active hidden" id="loading_query">
+                                    <div class="spinner-layer spinner-green-only">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="gap-patch">
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                                </div>                        
+                            </div>                        
+                        </div>                    
+                    </div>                    
+                    <div class="row " if.bind="is_loading">
+                        <div class="col s12 m12 l12">
+                            <div class="progress">
+                                <div class="indeterminate"></div>
+                            </div>
+                        </div>
+                    </div>         
+                    <div class="row">
+                        <table class="responsive-table bordered">                        
+                            <tbody>                            
+                                <tr if.bind="!is_loading" repeat.for="survivor of survivors_not_infected" class="ref_survivors_list">
+                                    <td class="w-5">
+                                        <img src="images/${survivor['infected?'] ?'skull' : 'face'}.svg" width="40" class="circle ${survivor['infected?'] ?'red' : 'green'} z-depth-3">
+                                    </td>
+                                    <td class="w-40">
+                                        <div class="card-panel grey lighten-3 flow-text hoverable">${survivor.name}</div>
+                                        <div class="card-panel grey lighten-5 hoverable">
+                                            <p><b>${'gender.title'|t}:</b> <i>${'gender.desc'|t:{gender: survivor.gender}} ${'age'|t}: ${survivor.age}</i></p>
+                                            <p><b>${'survivor.created_at'|t}:</b> <i>${dateFormat(survivor.created_at)}</i></p>
+                                            <p><b>${'survivor.updated_at'|t}:</b> <i>${dateFormat(survivor.updated_at)}</i></p>
+                                            <p if.bind="survivor.lonlat"><b>${'survivor.last_location'|t}:</b> <a href="${getLonLat(survivor.lonlat)}" target="_blank">Visualizar</a></p>
+                                        </div>                                
+                                    </td>
+                                    <td class="w-10 center">
+                                        <div class="row">
+                                            <div class="col s6 m6 l10">
+                                                <div class="card-panel grey lighten-5 hoverable">
+                                                    <div class="row">
+                                                        <div class="col s4 m4 l4">
+                                                            <button class="waves-effect waves-light light-blue darken-1 btn" click.delegate="update(survivor.location)" md-tooltip="position: left; text.bind: lb_update_location;">
+                                                                <i class="left material-icons"><img src="images/earth.svg"></i>&nbsp;${'update'|t}
+                                                            </button>                                                            
+                                                        </div>
+                                                        <div class="col s4 m4 l4">
+                                                            <button class="waves-effect waves-light light-green darken-1 btn" click.delegate="delateInfection(survivor.location)" md-tooltip="position: left; text.bind: lb_delate_contamination;">
+                                                                <i class="left material-icons"><img src="images/coin.svg"></i>&nbsp;${'trade'|t}
+                                                            </button>
+                                                        </div>
+                                                        <div class="col s4 m4 l4">
+                                                            <button class="waves-effect waves-light red darken-1 btn" click.delegate="delateInfection(survivor.location)" md-tooltip="position: left; text.bind: lb_delate_contamination;">
+                                                                <i class="left material-icons"><img src="images/w_radioactive.svg"></i>&nbsp;${'delate'|t}
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div id="tab_infected" class="tab-content col s12 m12 l12">
+            <ul class="collection" ref="ref_survivors_not_list">
+                <li class="collection-item avatar hoverable" repeat.for="survivor of survivors_infected">
+                    <img src="images/${survivor['infected?'] ?'skull' : 'face'}.svg" class="circle ${survivor['infected?'] ?'red' : 'green'} z-depth-3">
+                    <span class="title">${'survivor.status'|t}: ${'survivor.desc'|t:{status: survivor['infected?']}}</span>
+                    <p>${'name'|t}: ${survivor.name}</p>
+                    <p>${'age'|t}: ${survivor.age}</p>
+                    <p>${'gender.title'|t}: ${'gender.desc'|t:{gender: survivor.gender}}</p>
+                    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                </li>
+            </ul>
+        </div>        
     </div>
 </template>

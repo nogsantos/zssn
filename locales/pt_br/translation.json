@@ -8,11 +8,14 @@
     "people": "Pessoas",
     "members": "Membros",
     "members_rol": "Rol de Membros",
+    "search_by_name": "Localizar por nome",
     "name": "Nome",
     "age": "Idade",
     "location": "Localização",
     "last_location": "Última localização",
     "current_location": "Localização atual",
+    "total_number_infected": "Número total de infectados",
+    "total_number_not_infected": "Número total de não infectados",
     "inventory": "Inventário",
     "water": "Água",
     "food": "Comida",
@@ -29,10 +32,15 @@
     "latitud": "Latitude",
     "address": "Endereço",
     "longitud": "Longitude",
+    "update": "Atualizar",
+    "delate": "Denunciar",
+    "update_location": "Atualizar localização",
+    "delate_infection": "Denunciar como infectado",
+    "trade_itens": "Comercializar itens",
+    "trade": "Comercializar",
     "success": {
         "add": "Cadastrado com sucesso",
         "survivor_id": "Código identificador do sobrevivente"
-
     },
     "error": {
         "age": "Campo [<b>Idade</b>]",
@@ -62,17 +70,24 @@
         "undefined": "Indefinido"
     },
     "survivor": {
-        "title": "Sobrevivente",
-        "info": "Aqui serão listados os sobreviventes",
+        "title": "Membros",
+        "info": "Aqui serão listados os membros cadastrados na resistência",
         "status": "Estado",
+        "input_search_help": "Digite o nome e pressione Enter para realizar a busca.",
+        "bt_clean_help": "Limpar nome.",
+        "created_at": "Cadastrado em",
+        "updated_at": "Última atualização",
+        "last_location": "Última localização",
+        "location_not_informed": "Localização não informada",
+        "location_bad_format": "Localização não informada corretamente",
         "desc": "$t(survivor.{{status}})",
         "true": "Infectado",
         "false": "Não infectado",
-        "nav": "Listar todos sobreviventes",
-        "search": "Localizar um sobrevivente",
-        "list": "Listagem de sobreviventes",
-        "list_sub": "Não somente sobreviventes, infectados também serão listados",
-        "new": "Cadastrar novo sobrevivente",
+        "nav": "Listar todos os membros",
+        "search": "Localizar um membro",
+        "list": "Listagem de membros",
+        "list_sub": "Membros não infectados e infectados",
+        "new": "Cadastrar novo membro",
         "form": {
             "help": "Use o formulário abaixo para registar os dados."
         }

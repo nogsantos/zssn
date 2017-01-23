@@ -1,0 +1,46 @@
+#_survivor_index [md-tabs] .waves-effect {
+    position: static;
+}
+
+#_survivor_index table tr td button {
+    width: 50%;
+    margin: 5px;
+}
+
+#_survivor_index .tab-icon {
+    position: relative;
+    top: 23%;
+    float: left;
+}
+
+#_survivor_index .w-5 {
+    max-width: 5% !important;
+}
+
+#_survivor_index .w-10 {
+    max-width: 10% !important;
+}
+
+#_survivor_index .w-20 {
+    max-width: 20% !important;
+}
+
+#_survivor_index .w-30 {
+    max-width: 30% !important;
+}
+
+#_survivor_index .search-clean {
+    cursor: pointer;
+    position: absolute;
+    float: left;
+    left: 102%;
+    top: 35%;
+    color: red;
+}
+
+#_survivor_index .preloader-wrapper {
+    position: absolute;
+    float: left;
+    left: 110%;
+    top: 10%;
+}

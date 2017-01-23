@@ -203,6 +203,11 @@
                         "path": "../node_modules/pickadate/lib",
                         "main": "picker"
                     },
+                    {
+                        "name": "moment",
+                        "path": "../node_modules/moment/min",
+                        "main": "moment-with-locales"
+                    },
                     "jquery"
                 ]
             },

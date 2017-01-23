@@ -3,6 +3,7 @@ import { I18N } from 'aurelia-i18n';
 import { ResourceFactory } from '../../resources/system/resource-factory';
 import env from '../../resources/system/env';
 import * as $ from 'jquery';
+import * as moment from 'moment';
 /**
  * @description
  *  Survivors Index
@@ -15,9 +16,17 @@ import * as $ from 'jquery';
 export class Survivor {
     private title: string;
     private survivors: Object;
+    private survivors_infected: Array<any>;
+    private survivors_not_infected: Array<any>;
+    private count_infected: number;
+    private count_not_infected: number;
+    private lb_update_location: string;
+    private lb_delate_contamination: string;
+    private txt_search_help: string;
+    private txt_bt_clean_help: string;
     private is_loading: boolean;
-    private ref_survivors_list;
-    @bindable private ref_search_by_name;
+    private show_bt_clean: boolean;
+    @bindable private query_not_infected: string;
     /**
      * Dependency injections
      */
@@ -32,6 +41,11 @@ export class Survivor {
         if (navigationInstruction.id === "_survivor") {
             this.fetchAll();
         }
+        this.lb_update_location = this.i18n.tr(`update_location`);
+        this.lb_delate_contamination = this.i18n.tr(`delate_infection`);
+        this.txt_search_help = this.i18n.tr('survivor.input_search_help');
+        this.txt_bt_clean_help = this.i18n.tr('survivor.bt_clean_help');
+        moment.locale('pt-br');
     }
     /**
      * The view also ben created
@@ -40,42 +54,114 @@ export class Survivor {
         this.title = this.i18n.tr(`survivor.list`);
     }
     /**
-     * Possible to search for a survivor by name
-     */
-    bind() {
-        $(this.ref_search_by_name).keyup(event => {
-            let val = '^(?=.*\\b' + $.trim(this.ref_search_by_name.value).split(/\s+/).join('\\b)(?=.*\\b') + ').*$';
-            let reg = RegExp(val, 'i');
-            let text;
-            $(this.ref_survivors_list).show().filter(() => {
-                text = $(this.ref_survivors_list).text().replace(/\s+/g, ' ');
-                return !reg.test(text);
-            }).hide();
-            // let search = $.grep(this.survivors, field => {
-            //     return field.name == this.ref_search_by_name.value;
-            // });
-            // console.log(search);
-            // if (search.lenght > 0) {
-            //     $(this.ref_survivors_list).fadeOut();
-            // }
-        });
-    }
-    /**
      * Fetch all data when the user came to all 
      * or when called by a button
      */
     fetchAll(): void {
         this.is_loading = true;
         this.resource.query(env.api.resources.survivor).then(response => {
+            this.count_infected = 0;
+            this.count_not_infected = 0;
             if (response.length > 0) {
-                this.survivors = response;
+                this.survivors_infected = [];
+                this.survivors_not_infected = [];
+                let arr_infected = [];
+                let arr_not_infected = [];
+                response.forEach(element => {
+                    if (element['infected?']) {
+                        arr_infected.push(element);
+                        this.count_infected++;
+                    } else {
+                        arr_not_infected.push(element);
+                        this.count_not_infected++;
+                    }
+                });
+                this.survivors_infected = arr_infected.reverse();
+                this.survivors_not_infected = arr_not_infected.reverse();
                 this.is_loading = false;
-            } else {
-
             }
         }).catch(error => {
             this.is_loading = false;
             console.log(error);
         });
+    }
+    /**
+     * Update a survivor location
+     */
+    update(location: string): void {
+        console.log(this.getIdFromLocation(location));
+    }
+    /**
+     * Delate a survivor as infected
+     */
+    delateInfection(location: string): void {
+        console.log(this.getIdFromLocation(location));
+    }
+    /**
+     * From a location url, get the id
+     */
+    getIdFromLocation(location: string): string {
+        let id = location.split('/');
+        return id[id.length - 1];
+    }
+    /**
+     * Search a not infected by name
+     */
+    searchNotInfectedByName(): void {
+        $("#loading_query").fadeIn("fast", () => {
+            $.each($('.ref_survivors_list'), function (i, val) {
+                let item = $(val).find("td");
+                let text = item.context.innerText.replace(/\s+/g, ' ').toLowerCase();
+                if ($("#_search_by_name").val().trim() !== "") {
+                    if (text.search($("#_search_by_name").val().toLowerCase()) > 0) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                    $("#loading_query").fadeOut();
+                } else {
+                    $(this).show();
+                    $("#loading_query").fadeOut();
+                }
+            });
+        });
+    }
+    /**
+     * Show or hide the button on input field
+     */
+    inputCleanToggle(): void {
+        this.show_bt_clean = (this.query_not_infected.length > 0) ? true : false;
+    }
+    /**
+     * Just reset de query
+     */
+    resetNotInfectedSearch(): void {
+        this.query_not_infected = "";
+        this.inputCleanToggle();
+        this.searchNotInfectedByName();
+    }
+    /**
+     * Show location on google maps
+     */
+    getLonLat(lonlat: string): string {
+        try {
+            if (lonlat && lonlat.length > 0) {
+                let a = lonlat.substr(7, lonlat.length - 1);
+                let b = a.substr(-a.length, a.length - 1).split(" ");
+                let lon: string = b[1];
+                let lat: string = b[0];
+                return `http://maps.google.com/maps?z=20&t=m&q=loc:${lat}+${lon}`;
+            } else {
+                return this.i18n.tr('survivor.location_not_informed');
+            }
+        } catch (error) {
+            return this.i18n.tr('survivor.location_bad_format');
+        }
+    }
+    /**
+     * Format date to view
+     */
+    dateFormat(date: string): string {
+        return moment(date).format('LLLL');
     }
 }

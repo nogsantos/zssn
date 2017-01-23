@@ -31,3 +31,9 @@
     top: -10px;
     left: 40%;
 }
+
+#_survivor_form .preloader-wrapper{
+    position: absolute;
+    float: right;
+    right: 60%;
+}

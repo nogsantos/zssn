@@ -1,6 +1,6 @@
 <template>
     <require from="./form.css"></require>
-    <div class="row">
+    <div class="row" id="_survivor_form">
         <div class="row">
             <div class="col s12 m12 l12">
                 <span class="flow-text">${title} <small>» ${'survivor.form.help'|t}</small></span> 
@@ -103,7 +103,7 @@
                         </div>
                     </div>
                     <div class="row">            
-                        <div class="col s12 m12 l3 push-l7">
+                        <div class="col s12 m12 l3 push-l6">
                             <button                    
                                 class="waves-effect waves-light blue-grey lighten-1 btn s-m-full-line"  
                                 click.delegate="cancel()">
@@ -111,9 +111,9 @@
                                     &nbsp;${'clean_form'|t}
                             </button>
                         </div>
-                        <div class="col s12 m12 l2 push-l7">
+                        <div class="col s12 m12 l3 push-l6">                            
                             <div class="preloader-wrapper small active" if.bind="is_loading">
-                                <div class="spinner-layer spinner-green-only">
+                                <div class="spinner-layer spinner-blue-only">
                                 <div class="circle-clipper left">
                                     <div class="circle"></div>
                                 </div><div class="gap-patch">
