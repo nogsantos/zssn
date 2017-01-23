@@ -15,13 +15,14 @@ import * as moment from 'moment';
 @autoinject()
 export class Survivor {
     private title: string;
-    private survivors: Object;
+    private list_help: string;
     private survivors_infected: Array<any>;
     private survivors_not_infected: Array<any>;
     private count_infected: number;
     private count_not_infected: number;
     private lb_update_location: string;
-    private lb_delate_contamination: string;
+    private lb_delate_infection: string;
+    private lb_trade_itens: string;
     private txt_search_help: string;
     private txt_bt_clean_help: string;
     private is_loading: boolean;
@@ -42,9 +43,11 @@ export class Survivor {
             this.fetchAll();
         }
         this.lb_update_location = this.i18n.tr(`update_location`);
-        this.lb_delate_contamination = this.i18n.tr(`delate_infection`);
+        this.lb_delate_infection = this.i18n.tr(`delate_infection`);
+        this.lb_trade_itens = this.i18n.tr(`trade_itens`);
         this.txt_search_help = this.i18n.tr('survivor.input_search_help');
         this.txt_bt_clean_help = this.i18n.tr('survivor.bt_clean_help');
+        this.list_help = this.i18n.tr('survivor.info');     
         moment.locale('pt-br');
     }
     /**
@@ -66,18 +69,19 @@ export class Survivor {
                 this.survivors_infected = [];
                 this.survivors_not_infected = [];
                 let arr_infected = [];
-                let arr_not_infected = [];
-                response.forEach(element => {
-                    if (element['infected?']) {
-                        arr_infected.push(element);
+                let arr_not_infected = [];                
+                response.reverse().some((value, index, _ary) => {                    
+                    if (value['infected?']) {
+                        arr_infected.push(value);
                         this.count_infected++;
                     } else {
-                        arr_not_infected.push(element);
+                        arr_not_infected.push(value);
                         this.count_not_infected++;
                     }
+                    return index === 200; // just gettin last 200 insertions to reduce the dom manipulation
                 });
-                this.survivors_infected = arr_infected.reverse();
-                this.survivors_not_infected = arr_not_infected.reverse();
+                this.survivors_infected = arr_infected;
+                this.survivors_not_infected = arr_not_infected;
                 this.is_loading = false;
             }
         }).catch(error => {
@@ -95,6 +99,12 @@ export class Survivor {
      * Delate a survivor as infected
      */
     delateInfection(location: string): void {
+        console.log(this.getIdFromLocation(location));
+    }
+    /**
+     * Trade
+     */
+    tradeItens(location: string): void {
         console.log(this.getIdFromLocation(location));
     }
     /**
@@ -130,7 +140,7 @@ export class Survivor {
      * Show or hide the button on input field
      */
     inputCleanToggle(): void {
-        this.show_bt_clean = (this.query_not_infected.length > 0) ? true : false;
+        this.show_bt_clean = (this.query_not_infected && this.query_not_infected.length > 0) ? true : false;
     }
     /**
      * Just reset de query
@@ -150,12 +160,12 @@ export class Survivor {
                 let b = a.substr(-a.length, a.length - 1).split(" ");
                 let lon: string = b[1];
                 let lat: string = b[0];
-                return `http://maps.google.com/maps?z=20&t=m&q=loc:${lat}+${lon}`;
+                return `<a href="http://maps.google.com/maps?z=20&t=m&q=loc:${lat}+${lon}" target="_blank">Visualizar</a>`;
             } else {
-                return this.i18n.tr('survivor.location_not_informed');
+                return `<i>${this.i18n.tr('survivor.location_not_informed')}</i>`;
             }
         } catch (error) {
-            return this.i18n.tr('survivor.location_bad_format');
+            return `<i>${this.i18n.tr('survivor.location_bad_format')}</i>`;
         }
     }
     /**

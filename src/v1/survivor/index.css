@@ -41,6 +41,6 @@
 #_survivor_index .preloader-wrapper {
     position: absolute;
     float: left;
-    left: 110%;
-    top: 10%;
+    left: 50%;
+    top: 90%;
 }

@@ -71,9 +71,9 @@
     },
     "survivor": {
         "title": "Membros",
-        "info": "Aqui serão listados os membros cadastrados na resistência",
+        "info": "<blockquote>Os bravos membros da resistência aos zumbis estarão listados aqui. Abaixo você poderá visualizar duas abas, \"Não infectado\" onde serão listados os membros cadastrados que não foram infectados e, \"Infectado\" <i>(In memoriam)</i>, as vítimas desse terrível virus.</blockquote>",
         "status": "Estado",
-        "input_search_help": "Digite o nome e pressione Enter para realizar a busca.",
+        "input_search_help": "<p>Digite o Nome que deseja localizar e pressione a tecla \"Enter\" para realizar a busca.</p><p>Ps.: Caso não localize quem procura na aba \"Não infectado\", o mesmo filtro também será aplicado na aba \"Infectado\"</p>",
         "bt_clean_help": "Limpar nome.",
         "created_at": "Cadastrado em",
         "updated_at": "Última atualização",

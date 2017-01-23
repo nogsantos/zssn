@@ -42,17 +42,7 @@ export class App {
             href: "#/survivor",
             icon: 'accessibility',
             id: "_survivor"
-        });
-        config.map({
-            route: 'survivor/search',
-            name: 'SurvivorSearch',
-            moduleId: 'v1/survivor/index',
-            nav: true,
-            title: this.i18n.tr('survivor.search'),
-            href: "#/survivor/search",
-            icon: 'search',
-            id: "_survivor_search"
-        });
+        });        
         config.map({
             route: 'survivor/form',
             name: 'SurvivorForm',
