@@ -1,9 +1,10 @@
 <template>    
+    <require from="./navigation-top.css"></require>
     <div class="navbar-fixed">
         <nav>
             <div class="container">
                 <div class="nav-wrapper">
-                    <div class="row">
+                    <div class="row hide-on-med-and-down">
                         <div class="col s6 m6 l6">
                             <a href="#/" class="brand-logo">                            
                                 <span class="flow-text">
@@ -12,7 +13,7 @@
                             </a>                    
                         </div>    
                         <div class="col s6 m6 l6">
-                            <ul class="right hide-on-med-and-down">
+                            <ul class="right">
                                 <li repeat.for="row of router.navigation" id="${row.config.id}">
                                     <a                             
                                         href.bind="row.href" 
@@ -26,6 +27,11 @@
                                 </li>
                             </ul>
                         </div>
+                    </div>
+                </div>
+                <div class="row" id="auth-menu">
+                    <div class="col s4 m4 l6">                        
+                        <button class="btn" onclick="document.getElementById('id01').style.display='block'">Login</button>
                     </div>
                 </div>
             </div>
