@@ -1,0 +1,16 @@
+#auth-form {
+    overflow-x: hidden;
+    position: fixed;
+    width: 100%;
+    z-index: 10000;
+    float: right;
+    left: 28%;
+}
+
+#auth_form_icon {
+    position: absolute;
+    width: 5%;
+    right: 54%;
+    float: left;
+    top: 20%;
+}

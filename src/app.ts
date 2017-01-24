@@ -54,6 +54,12 @@ export class App {
             id: "_survivor_form"
         });        
         config.map({
+            route: 'survivor/profile',
+            name: 'SurvivorProfile',
+            moduleId: 'v1/survivor/profile',
+            nav: false            
+        });
+        config.map({
             route: 'about',
             name: 'About',
             moduleId: 'v1/about/index',
@@ -68,7 +74,7 @@ export class App {
          */
         let navStrat = (instruction: NavigationInstruction) => {
             if (instruction.config === null) {
-                return '404';
+                return 'error-404';
             }
             instruction.config.moduleId = instruction.fragment;
             instruction.config.href = instruction.fragment;

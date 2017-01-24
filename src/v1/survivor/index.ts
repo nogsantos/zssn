@@ -62,7 +62,7 @@ export class Survivor {
      */
     fetchAll(): void {
         this.is_loading = true;
-        this.resource.query(env.api.resources.survivor).then(response => {
+        this.resource.query(`${env.api.resources.survivor}.json`).then(response => {
             this.count_infected = 0;
             this.count_not_infected = 0;
             if (response.length > 0) {

@@ -9,11 +9,11 @@
     <require from="template/page/page-footer"></require>
     <header>
         <navigation-top router.bind="router"></navigation-top>
+        <auth-form></auth-form>
     </header>
     <main>
         <div class="container" id="main-container">
             <router-view></router-view>
-            <auth-form></auth-form>
         </div>
     </main>
     <aside>

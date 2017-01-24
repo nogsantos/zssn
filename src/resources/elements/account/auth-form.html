@@ -1,24 +1,47 @@
 <template>
-    <!-- The Modal -->
-    <div id="id01" class="modal">
-        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-        <!-- Modal Content -->
-        <form class="modal-content animate" action="action_page.php">
-            <div class="imgcontainer">
-                <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    <require from="./auth-form.css"></require>
+    <div id="auth-form" class="hidden">
+        <img src="images/account.svg" id="auth_form_icon">
+        <div class="row"><br>
+            <div class="col s12 m12 l6">
+                <div class="card-panel grey lighten-4">
+                    <div class="section">
+                        <div class="row">
+                            <div class="col s12 m12 l12">
+                                <div class="card-panel grey lighten-5">
+                                    <span class="grey-text text-darken-2">
+                                        Informe seu código identificador único.
+                                        <p><small>Ex.: 04e2904d-6404-4133-9851-877edf2f1724</small></p>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-field col s10 m10 l12">
+                            <label for="_survivor_id">Código identificador*</label>
+                            <input type="text" value.bind="survivor.id">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m12 l12 right-align">
+                            <button class="btn-flat" click.delegate="cancel()">Cancelar</button>
+                            <div class="preloader-wrapper small active">
+                                <div class="spinner-layer spinner-blue-only" if.bind="loading">
+                                    <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="gap-patch">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="circle-clipper right">
+                                        <div class="circle"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn" click.delegate="auth()">Login</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="container">
-                <label><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="uname" required>
-                <label><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
-                <button type="submit">Login</button>
-                <input type="checkbox" checked="checked"> Remember me
-            </div>
-            <div class="container" style="background-color:#f1f1f1">
-                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                <span class="psw">Forgot <a href="#">password?</a></span>
-            </div>
-        </form>
+        </div>
     </div>
 </template>

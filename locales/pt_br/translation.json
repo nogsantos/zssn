@@ -34,6 +34,10 @@
     "longitud": "Longitude",
     "update": "Atualizar",
     "delate": "Denunciar",
+    "login": "Login",
+    "profile": "Perfil",
+    "view": "Visualizar",
+    "logout": "Sair do sistema",    
     "update_location": "Atualizar localização",
     "delate_infection": "Denunciar como infectado",
     "trade_itens": "Comercializar itens",
@@ -56,7 +60,8 @@
         "can't be blank,is not a number": "Não pode estar em branco e Não é um número válido",
         "can't be blank,is not included in the list": "Não pode estar em branco e Não está incluso na lista de valores permitidos",
         "respond": "Há erros em sua requisição",
-        "unknow": "Desculpe, erro desconhecido"
+        "unknow": "Desculpe, erro desconhecido",
+        "404": "Desculpe, a página que você procura não faz parte do sistema."
     },
     "map": {
         "error": "A geolocalização não está habilitada em seu navegado. Clique em um ponto do mapa para obter as coordenadas.",
@@ -71,6 +76,7 @@
     },
     "survivor": {
         "title": "Membros",
+        "welcome": "Bem vindo {{name}}!",
         "info": "<blockquote>Os bravos membros da resistência aos zumbis estarão listados aqui. Abaixo você poderá visualizar duas abas, \"Não infectado\" onde serão listados os membros cadastrados que não foram infectados e, \"Infectado\" <i>(In memoriam)</i>, as vítimas desse terrível virus.</blockquote>",
         "status": "Estado",
         "input_search_help": "<p>Digite o Nome que deseja localizar e pressione a tecla \"Enter\" para realizar a busca.</p><p>Ps.: Caso não localize quem procura na aba \"Não infectado\", o mesmo filtro também será aplicado na aba \"Infectado\"</p>",

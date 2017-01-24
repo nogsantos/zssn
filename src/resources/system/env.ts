@@ -8,8 +8,8 @@ export default {
     api: {
         address: "http://zssn-backend-example.herokuapp.com/api/",
         resources: {
-            survivor: "people.json",
-            report: "report_infection.json"
+            survivor: "people",
+            report: "report_infection"
         },
         key: "AIzaSyDVM7xQFkBSFFp9RhKcEeStD_hYkMHWwyw"
     },
@@ -30,6 +30,9 @@ export default {
             help: {
                 duration: 9000
             }
+        },
+        storage: {
+            name: "survivor"
         }
     }
 };
