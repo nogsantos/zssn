@@ -1,4 +1,5 @@
 import { autoinject, bindable } from 'aurelia-framework';
+import { EventAggregator } from 'aurelia-event-aggregator';
 import { Storage } from '../../resources/system/storage';
 import { Router } from "aurelia-router";
 import env from '../../resources/system/env';
@@ -13,15 +14,24 @@ import * as $ from 'jquery';
  */
 @autoinject()
 export class NavigationTop {
+    private survivor = {
+        name: null
+    };
     @bindable router;
-    @bindable private autenticated: boolean;
+    private autenticated: boolean;
     /**
      * CDI
      */
     constructor(
         private subrouter: Router,
-        private storage: Storage
-    ) { }
+        private storage: Storage,
+        private event: EventAggregator
+    ) {
+        this.event.subscribe('survivor_credentials', survivor => {
+            this.autenticated = typeof survivor.id !== "undefined";
+            this.survivor.name = survivor.name;
+        });
+    }
     /**
      * Check if has an active user
      */
@@ -47,6 +57,7 @@ export class NavigationTop {
      * Make the logout and update 
      */
     logout() {
+        this.autenticated = false;
         this.storage.remove(env.conf.storage.name);
         this.subrouter.navigate("/");
     }

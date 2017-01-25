@@ -11,16 +11,30 @@
                             </span>
                         </a>                    
                     </div>    
-                    <div  id="auth-menu" class="col s12 m12 l4 center-align">                            
-                        <a if.bind="!autenticated" 
-                            class="waves-effect waves-light btn" 
-                            click.delegate="authForm()">${'login'|t}</a>
-                        <a if.bind="autenticated"
-                            md-dropdown="activates: dropdown1"
-                            class="btn-large">${'profile'|t}<i class="material-icons right">arrow_drop_down</i>
-                        </a>                            
+                    <div if.bind="!autenticated" id="auth-menu" class="col s12 m12 l4 center-align">
+                        <a class="waves-effect waves-light btn" click.delegate="authForm()">${'login'|t}</a>
                     </div>
-                    <div class="col right l4 hide-on-med-and-down">
+                    <div class="col right" if.bind="autenticated">                             
+                        <li>
+                            <a
+                                href="#/survivor/profile"
+                                md-button="floating: true;" 
+                                md-waves="color: light; circle: true;" 
+                                class="transparent" 
+                                md-tooltip="position: bottom; text: Perfil">
+                                <i class="large material-icons">account_box</i>
+                            </a>                            
+                            <a
+                                click.delegate="logout()"
+                                md-button="floating: true;" 
+                                md-waves="color: light; circle: true;" 
+                                class="transparent" 
+                                md-tooltip="position: bottom; text: Sair">
+                                <i class="large material-icons">power_settings_new</i>
+                            </a>                            
+                        </li>                            
+                    </div>
+                    <div class="col right l4">
                         <ul class="right">                            
                             <li repeat.for="row of router.navigation" id="${row.config.id}">
                                 <a                             
@@ -37,11 +51,6 @@
                     </div>
                 </div>                
             </div>
-        </nav>
-        <ul id="dropdown1" class="dropdown-content">
-            <li><a href="#/survivor/profile">${'view'|t}</a></li>            
-            <li class="divider"></li>
-            <li><a click.delegate="logout()">${'logout'|t}</a></li>
-        </ul>         
+        </nav>        
     </div>
 </template>

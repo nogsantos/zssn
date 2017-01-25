@@ -93,8 +93,8 @@
                                                                 class="circle green z-depth-3">
                                                             </i>&nbsp;${survivor.name}
                                                         </span>
-                                                        <p><b>${'gender.title'|t}:</b> <i>${'gender.desc'|t:{gender: survivor.gender}}</i>&nbsp;<b>${'age'|t}:</b>                                                            ${survivor.age}</i>
-                                                        </p>
+                                                        <p><b>${'id'|t}:</b>&nbsp;<i>${getIdFromLocation(survivor.location)}</i></p>
+                                                        <p><b>${'gender.title'|t}:</b> <i>${'gender.desc'|t:{gender: survivor.gender}}</i>&nbsp;<b>${'age'|t}:</b>${survivor.age}</i></p>
                                                         <p><b>${'survivor.created_at'|t}:</b>&nbsp;<i>${dateFormat(survivor.created_at)}</i></p>
                                                         <p><b>${'survivor.updated_at'|t}:</b>&nbsp;<i>${dateFormat(survivor.updated_at)}</i></p>
                                                         <p><b>${'survivor.last_location'|t}:</b>&nbsp;<span innerhtml.bind="getLonLat(survivor.lonlat)"></span></p>

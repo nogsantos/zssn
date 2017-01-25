@@ -2,15 +2,80 @@
     <div class="row">
         <div class="row">
             <div class="col s12 m12 l12">
-                <span class="flow-text">${title} <small>» sub</small></span>
+                <span class="flow-text">${title}&nbsp;<small>»&nbsp;${'profile_help'|t}</small></span>
             </div>
         </div>
         <div class="row">
-            <div class="col s12 m12 l12">
-                <div class="section card-panel white z-depth-2">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae corrupti nulla facere, nemo vel nesciunt temporibus est placeat iusto assumenda tempore recusandae delectus rem repellat deserunt magni exercitationem quaerat tenetur!
+            <div class="section card-panel white z-depth-2">
+                <div class="col s12 m12 l6">
+                    <div class="row">
+                        <div class="col s12 m12 l12 center-align">
+                            <img src="images/man.svg" width="150" class="circle responsive-img">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m12 l12">
+                            <p class="flow-text"><b>${'id'|t}:</b>&nbsp;<i>${survivor.id}<i></p>
+                            <p class="flow-text"><b>${'name'|t}:</b>&nbsp;<i>${survivor.name}<i></p>
+                            <p class="flow-text"><b>${'age'|t}:</b>&nbsp;<i>${survivor.age}<i></p>
+                            <p class="flow-text"><b>${'gender.title'|t}:</b>&nbsp;<i>${'gender.desc'|t:{gender: survivor.gender}}<i></p>
+                            <p class="flow-text"><b>${'last_location'|t}:</b>&nbsp;<i><span if.bind="!survivor.lonlat">${'not_informed'|t}</span><i></p>
+                            <div class="col s12 m12 l12" if.bind="survivor.lonlat">
+                                <p class="flow-text"><b>${'latitud'|t}:</b>&nbsp;<i>${getLocation()[1]}<i></p>
+                                <p class="flow-text"><b>${'longitud'|t}:</b>&nbsp;<i>${getLocation()[0]}<i></p>
+                                <p class="flow-text"><b>${'address'|t}:</b>&nbsp;<i>${location_address}<i></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m12 l6">
+                    <label class="flow-text">${'new_location'|t}</label>
+                    <map coodinates.bind="getLocation()"></map>
+                    <div class="row">
+                        <div class="s12 m12 l12 center-align">
+                            <button                    
+                                class="waves-effect waves-light primary btn s-m-full-line" 
+                                click.delegate="updateLocation()">
+                                    <i class="left material-icons">save</i>
+                                    &nbsp;${'update'|t}
+                            </button>  
+                        </div>
+                    </div>                    
+                    <div class="row" if.bind="message.body">
+                        <div class="col s12 m12 l12">
+                            <label class="flow-text">${message.title}</label>
+                            <div class="card-panel ${message.style} lighten-5 hoverable">                            
+                                <ul><li repeat.for="item of message.body" innerhtml.bind="item"></li></ul>
+                            </div>
+                        </div>
+                    </div>                
+                </div>
+                <div class="row">
+                    <div class="col s12 m12 l12" if.bind="inventory">
+                        <p class="flow-text">${'itens_in_inventory'|t}</p>
+                        <table class="highlight bordered responsive-table">
+                            <thead>
+                                <tr>
+                                    <th>${'item'|t}</th>
+                                    <th class="center-align">${'quantity'|t}</th>
+                                    <th class="center-align">${'value_un'|t}</th>
+                                    <th class="center-align">${'total'|t}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr repeat.for="item of inventory">
+                                    <td>${'iventory_item.upper'|t:{item:item.item.name}}</td>
+                                    <td class="center-align">${item.quantity}</td>
+                                    <td class="center-align">${item.item.points}</td>
+                                    <td class="center-align">${item.quantity * item.item.points}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col s12 m12 l12 center-align" if.bind="!inventory">
+                        <span class="flow-text">${'inventory_empty'|t}</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </template>

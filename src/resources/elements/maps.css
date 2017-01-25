@@ -1,0 +1,13 @@
+.map-load {
+    position: absolute;
+    left: 66%;
+    top: 40%;
+}
+
+.tooltip-help-info {
+    position: relative;
+    float: right;
+    bottom: 15px;
+    right: -14px;
+    cursor: help;
+}

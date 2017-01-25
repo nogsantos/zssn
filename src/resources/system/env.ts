@@ -9,6 +9,7 @@ export default {
         address: "http://zssn-backend-example.herokuapp.com/api/",
         resources: {
             survivor: "people",
+            inventary: "properties",
             report: "report_infection"
         },
         key: "AIzaSyDVM7xQFkBSFFp9RhKcEeStD_hYkMHWwyw"
