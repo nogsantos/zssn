@@ -17,6 +17,23 @@
     "total_number_infected": "Número total de infectados",
     "total_number_not_infected": "Número total de não infectados",
     "inventory": "Inventário",
+    "iventory_item": {
+        "upper":"$t(iventory_item.{{item}})",
+        "Water": "Água",
+        "Food": "Comida",
+        "Medication": "Medicamentos",
+        "Ammunition": "Munição"
+    },
+    "profile_help": "Seguem suas informações, caso necessite, utilize o mapa para atualizar sua localização.",
+    "quantity": "Quantidade",
+    "value_un": "Valor Un. (Pontos)",
+    "value_tot": "Valor Total",
+    "update_location": "Atualizar Localização",
+    "new_location": "Nova Localização",
+    "id": "ID.",
+    "not_informed": "Não informada",
+    "itens_in_inventory": "Itens no inventário",
+    "inventory_empty": "Não há itens em seu inventário",
     "water": "Água",
     "food": "Comida",
     "medication": "Medicamentos",
@@ -34,12 +51,18 @@
     "longitud": "Longitude",
     "update": "Atualizar",
     "delate": "Denunciar",
-    "update_location": "Atualizar localização",
+    "login": "Login",
+    "profile": "Perfil",
+    "view_profile": "Visualizar perfil",
+    "view": "Visualizar",
+    "hello": "Olá",
+    "logout": "Sair do sistema",    
     "delate_infection": "Denunciar como infectado",
     "trade_itens": "Comercializar itens",
     "trade": "Comercializar",
     "success": {
         "add": "Cadastrado com sucesso",
+        "update": "Atualizado com sucesso",
         "survivor_id": "Código identificador do sobrevivente"
     },
     "error": {
@@ -56,7 +79,8 @@
         "can't be blank,is not a number": "Não pode estar em branco e Não é um número válido",
         "can't be blank,is not included in the list": "Não pode estar em branco e Não está incluso na lista de valores permitidos",
         "respond": "Há erros em sua requisição",
-        "unknow": "Desculpe, erro desconhecido"
+        "unknow": "Desculpe, erro desconhecido",
+        "404": "Desculpe, a página que você procura não faz parte do sistema."
     },
     "map": {
         "error": "A geolocalização não está habilitada em seu navegado. Clique em um ponto do mapa para obter as coordenadas.",
@@ -71,6 +95,7 @@
     },
     "survivor": {
         "title": "Membros",
+        "welcome": "Bem vindo {{name}}!",
         "info": "<blockquote>Os bravos membros da resistência aos zumbis estarão listados aqui. Abaixo você poderá visualizar duas abas, \"Não infectado\" onde serão listados os membros cadastrados que não foram infectados e, \"Infectado\" <i>(In memoriam)</i>, as vítimas desse terrível virus.</blockquote>",
         "status": "Estado",
         "input_search_help": "<p>Digite o Nome que deseja localizar e pressione a tecla \"Enter\" para realizar a busca.</p><p>Ps.: Caso não localize quem procura na aba \"Não infectado\", o mesmo filtro também será aplicado na aba \"Infectado\"</p>",

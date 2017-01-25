@@ -43,13 +43,13 @@ export class Map {
     /**
      * When attached, create the map with current location
      */
-    attached() {
+    attached() {   
         this.source = new OpenLayer.source.Vector({ wrapX: false });
         const view = new OpenLayer.View({
             projection: 'EPSG:4326',
             center: [0, 0],
             zoom: 2
-        });
+        });        
         /*
          */
         let raster = new OpenLayer.layer.Tile({
@@ -84,7 +84,7 @@ export class Map {
         /*
          * Track location
          */
-        this.trackCurretLocation(view);
+        this.trackCurretLocation(view);        
     }
     /**        
      * Track the current location when attached 
@@ -93,7 +93,7 @@ export class Map {
         const geolocation = new OpenLayer.Geolocation({
             projection: view.getProjection()
         });
-        geolocation.setTracking(typeof when_attached !== "undefined" ? when_attached : true);
+        geolocation.setTracking(typeof when_attached !== "undefined" ? when_attached : true);        
         geolocation.on('change', () => { // Set the current location in coodinates param
             view.setZoom(10);
             view.setCenter(geolocation.getPosition());
@@ -101,7 +101,7 @@ export class Map {
             this.getAddress();
         });
         geolocation.on('error', error => { // handle geolocation error.
-            this.loading = false;            
+            this.loading = false;
             let message = error.code === 1 ? this.i18n.tr(`map.error`) : error.message;
             this.toast.show(message, env.conf.messages.error.duration);
         });
@@ -180,8 +180,8 @@ export class Map {
      */
     getAddress() {
         this.address = "";
-        this.resource = new ResourceFactory();
-        this.parent.survivor.location = this.coodinates;
+        this.resource = new ResourceFactory();        
+        this.parent.survivor.lonlat = this.coodinates;
         this.resource.query(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.coodinates[1]},${this.coodinates[0]}&key=${env.api.key}`)
             .then(response => {
                 if (response.status === "OK") {

@@ -93,18 +93,16 @@
                                                                 class="circle green z-depth-3">
                                                             </i>&nbsp;${survivor.name}
                                                         </span>
-                                                        <p><b>${'gender.title'|t}:</b> <i>${'gender.desc'|t:{gender: survivor.gender}}</i>&nbsp;<b>${'age'|t}:</b>                                                            ${survivor.age}</i>
-                                                        </p>
+                                                        <p><b>${'id'|t}:</b>&nbsp;<i>${getIdFromLocation(survivor.location)}</i></p>
+                                                        <p><b>${'gender.title'|t}:</b> <i>${'gender.desc'|t:{gender: survivor.gender}}</i>&nbsp;<b>${'age'|t}:</b>${survivor.age}</i></p>
                                                         <p><b>${'survivor.created_at'|t}:</b>&nbsp;<i>${dateFormat(survivor.created_at)}</i></p>
                                                         <p><b>${'survivor.updated_at'|t}:</b>&nbsp;<i>${dateFormat(survivor.updated_at)}</i></p>
                                                         <p><b>${'survivor.last_location'|t}:</b>&nbsp;<span innerhtml.bind="getLonLat(survivor.lonlat)"></span></p>
                                                     </div>
-                                                    <div class="card-action">
-                                                        <a class="btn s12 m12" href="javascript:void(0)" md-tooltip="position: top; text.bind: lb_update_location;" click.delegate="update(survivor.location)">
-                                                            <i class="left material-icons"><img src="images/earth.svg"></i>&nbsp;${'update'|t}</a>
+                                                    <div class="card-action">                                                        
                                                         <a class="btn s12 m12" href="javascript:void(0)" md-tooltip="position: top; text.bind: lb_trade_itens;" click.delegate="tradeItens(survivor.location)">
                                                             <i class="left material-icons"><img src="images/coin.svg"></i>&nbsp;${'trade'|t}</a>
-                                                        <a class="btn s12 m12" href="javascript:void(0)" md-tooltip="position: top; text.bind: lb_delate_infection;" click.delegate="delateInfection(survivor.location)">
+                                                        <a class="btn yellow accent-4 s12 m12" href="javascript:void(0)" md-tooltip="position: top; text.bind: lb_delate_infection;" click.delegate="delateInfection(survivor.location)">
                                                             <i class="left material-icons"><img src="images/w_radioactive.svg"></i>&nbsp;${'delate'|t}</a>
                                                     </div>
                                                 </div>

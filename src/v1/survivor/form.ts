@@ -3,6 +3,8 @@ import { I18N } from 'aurelia-i18n';
 import { ResourceFactory } from '../../resources/system/resource-factory';
 import { MdToastService } from 'aurelia-materialize-bridge';
 import { EventAggregator } from 'aurelia-event-aggregator';
+import { Survivor } from './survivor';
+import { Utilities } from './utilities';
 import env from '../../resources/system/env';
 /**
  * @description
@@ -25,6 +27,7 @@ export class Form {
     private gender_style: string;
     private image: string;
     private is_loading: boolean;
+    private survivor: Survivor;    
     private message = {
         title: null,
         style: null,
@@ -36,12 +39,6 @@ export class Form {
         2: 'yin-yang',
         3: 'keg',
         4: 'ghost',
-    };
-    private survivor = {
-        name: null,
-        age: null,
-        gender: null,
-        location: null
     };
     private inventory = {
         Water: null,
@@ -80,9 +77,9 @@ export class Form {
         this.inventory.Food = 0;
         this.inventory.Medication = 0;
         this.inventory.Ammunition = 0;
-        this.is_loading = true;
+        this.is_loading = true;        
     }
-    attached(){
+    attached() {
         this.is_loading = false;
     }
     /**
@@ -99,12 +96,12 @@ export class Form {
      * Will try to persist the information
      */
     save() {
-        this.is_loading = true;
+        this.is_loading = true;        
         let objetcToSave = {
             name: this.survivor.name,
             age: this.survivor.age,
             gender: this.survivor.gender,
-            lonlat: this.locationPattern(),
+            lonlat: Utilities.locationPattern(this.survivor.lonlat),
             items: this.itensPattern()
         };
         this.resource.send(env.api.resources.survivor, null, objetcToSave).then(response => {
@@ -122,7 +119,7 @@ export class Form {
             this.is_loading = false;
             this.message.style = "red";
             this.message.title = this.i18n.tr('error.unknow');
-            this.message.body = [error];            
+            this.message.body = [error];
         });
     }
     /**
@@ -134,15 +131,7 @@ export class Form {
             inventory_pattern += '' + key + ':' + this.inventory[key] + ';';
         });
         return inventory_pattern.replace(/;$/, "");
-    }
-    /**
-     * Location pattern
-     */
-    locationPattern(): string {
-        return (this.survivor.location !== null) ?
-            `POINT (${this.survivor.location[1]} ${this.survivor.location[0]})` :
-            `POINT (0 0)`;
-    }
+    }    
     /**
      * Prepare the form to add another survivor
      */

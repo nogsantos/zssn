@@ -22,8 +22,8 @@ export class ResourceFactory {
      */
     send(resource: string, id?: number | String, body?: Object): Promise<any> {
         const http = new Http();
-        const addPromise = http.fetch(`${resource}${id ? `/${id}` : ''}`, {
-            method: id ? 'patch' : 'post',
+        const addPromise = http.fetch(`${resource}${id ? `/${id}.json` : '.json'}`, {
+            method: id ? 'put' : 'post',
             body: json(body)
         })
             .then(this.checkStatus)
@@ -47,7 +47,7 @@ export class ResourceFactory {
      */
     query(resource: string, id?: string): Promise<any> {
         const http = new Http();
-        const queryPromise = http.fetch(`${resource}${id ? id : ''}`)
+        const queryPromise = http.fetch(`${resource}${id ? `/${id}.json` : ''}`)
             .then(this.checkStatus)
             .then(this.parseJSON)
             .then(response => {
