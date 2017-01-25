@@ -17,16 +17,16 @@ export default {
     conf: {
         messages: {
             error: {
-                duration: 9000
+                duration: 5000
             },
             success: {
-                duration: 6000
+                duration: 4000
             },
             warn: {
-                duration: 6000
+                duration: 5000
             },
             info: {
-                duration: 6000
+                duration: 5000
             },
             help: {
                 duration: 9000

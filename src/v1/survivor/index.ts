@@ -1,6 +1,9 @@
 import { autoinject, bindable } from 'aurelia-framework';
 import { I18N } from 'aurelia-i18n';
 import { ResourceFactory } from '../../resources/system/resource-factory';
+import { MdToastService } from 'aurelia-materialize-bridge';
+import { Storage } from '../../resources/system/storage';
+import { Survivor } from './survivor';
 import env from '../../resources/system/env';
 import * as $ from 'jquery';
 import * as moment from 'moment';
@@ -13,7 +16,7 @@ import * as moment from 'moment';
  * @author Fabricio Nogueira 
  */
 @autoinject()
-export class Survivor {
+export class SurvivorList {
     private title: string;
     private list_help: string;
     private survivors_infected: Array<any>;
@@ -27,12 +30,15 @@ export class Survivor {
     private txt_bt_clean_help: string;
     private is_loading: boolean;
     private show_bt_clean: boolean;
+    private survivor: Survivor;
     @bindable private query_not_infected: string;
     /**
      * Dependency injections
      */
     constructor(
         private i18n: I18N,
+        private storage: Storage,
+        private toast: MdToastService,
         private resource: ResourceFactory
     ) { }
     /**
@@ -47,7 +53,7 @@ export class Survivor {
         this.lb_trade_itens = this.i18n.tr(`trade_itens`);
         this.txt_search_help = this.i18n.tr('survivor.input_search_help');
         this.txt_bt_clean_help = this.i18n.tr('survivor.bt_clean_help');
-        this.list_help = this.i18n.tr('survivor.info');     
+        this.list_help = this.i18n.tr('survivor.info');
         moment.locale('pt-br');
     }
     /**
@@ -69,8 +75,8 @@ export class Survivor {
                 this.survivors_infected = [];
                 this.survivors_not_infected = [];
                 let arr_infected = [];
-                let arr_not_infected = [];                
-                response.reverse().some((value, index, _ary) => {                    
+                let arr_not_infected = [];
+                response.reverse().some((value, index, _ary) => {
                     if (value['infected?']) {
                         arr_infected.push(value);
                         this.count_infected++;
@@ -99,13 +105,33 @@ export class Survivor {
      * Delate a survivor as infected
      */
     delateInfection(location: string): void {
-        console.log(this.getIdFromLocation(location));
+        if (!this.storage.get(env.conf.storage.name)) {
+            this.toast.show(this.i18n.tr('survivor.list_info.auth', { type: 'delate' }), env.conf.messages.warn.duration);
+            return;
+        }
+        $("#global-loader").fadeIn("fast", () => {
+            this.survivor = JSON.parse(sessionStorage.getItem(env.conf.storage.name));
+            this.resource.send(env.api.resources.report, this.survivor.id, { infected: this.getIdFromLocation(location) }, true).then(response => {
+                if (!response) {
+                    this.toast.show(this.i18n.tr('survivor.list_info.delate.success'), env.conf.messages.success.duration);
+                } else {
+                    this.toast.show(this.i18n.tr('survivor.list_info.delate.already_have'), env.conf.messages.warn.duration);
+                }
+                $("#global-loader").fadeOut();                
+            }).catch(error => {
+                $("#global-loader").fadeOut();
+                console.error(error);
+            });
+        });
     }
     /**
      * Trade
      */
     tradeItens(location: string): void {
-        console.log(this.getIdFromLocation(location));
+        if (!this.storage.get(env.conf.storage.name)) {
+            this.toast.show(this.i18n.tr('survivor.list_info.auth', { type: 'trade' }), env.conf.messages.warn.duration);
+            return;
+        }
     }
     /**
      * From a location url, get the id

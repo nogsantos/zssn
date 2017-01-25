@@ -44,3 +44,10 @@
     left: 50%;
     top: 90%;
 }
+
+#global-loader {
+    position: fixed !important;
+    z-index: 1 !important;
+    top: 12% !important;
+    display: none;
+}

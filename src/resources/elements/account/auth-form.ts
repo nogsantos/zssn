@@ -58,7 +58,7 @@ export class AuthForm {
                             this.cancel();
                             this.toast.show('Autenticado com sucesso', env.conf.messages.success.duration);
                             this.event.publish('survivor_credentials', response); // send the survivor credentials to subscribers
-                            this.subrouter.navigate("#/survivor/profile");
+                            // this.subrouter.navigate("#/survivor/profile");
                         // } else {
                         //     this.toast.show('Lamentamos, mas usuários infectados não possuem mais acesso ao sistema', env.conf.messages.warn.duration);
                         // }

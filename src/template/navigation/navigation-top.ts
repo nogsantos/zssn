@@ -26,7 +26,7 @@ export class NavigationTop {
         private subrouter: Router,
         private storage: Storage,
         private event: EventAggregator
-    ) {
+    ) {        
         this.event.subscribe('survivor_credentials', survivor => {
             this.autenticated = typeof survivor.id !== "undefined";
             this.survivor.name = survivor.name;
@@ -51,6 +51,8 @@ export class NavigationTop {
         this.autenticated = this.storage.get(env.conf.storage.name);
         if (this.autenticated) {
             this.subrouter.navigate("/");
+            let survivor = JSON.parse(sessionStorage.getItem(env.conf.storage.name));
+            this.survivor.name = survivor.name;        
         }
     }
     /**

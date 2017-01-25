@@ -8,7 +8,6 @@ import { Survivor } from './survivor';
 import { Inventory } from './inventory';
 import { Utilities } from './utilities';
 import env from '../../resources/system/env';
-import * as $ from 'jquery';
 /**
  * @description
  *   Survivor profile
