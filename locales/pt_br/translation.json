@@ -231,5 +231,8 @@
             }
         }
     },
+    "about_page": {
+        "sub":"O que foi utilizado para desenvolvimento do sistema."        
+    },
     "wellcome": "Bem vindo sobrevivente membro da resistência!"
 }
