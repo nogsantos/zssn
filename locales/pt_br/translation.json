@@ -60,6 +60,20 @@
     "delate_infection": "Denunciar como infectado",
     "trade_itens": "Comercializar itens",
     "trade": "Comercializar",
+    "reports": {
+        "subtitle": "Relatórios dos dados cadastrados no sistema",
+        "average_of": "Média de Pessoas",
+        "Average of infected people": "Infectadas",
+        "Average of non-infected (healthy) people": "Não infectadas",
+        "no_description": "Sem descrição",
+        "average_items_quantity_per_healthy_person": "Por pessoa não infectada",
+        "average_items_quantity_per_person": "Por pessoa",
+        "Average of the quantity of items per person (total and just non-infected)": "Média de quantidade de itens",
+        "Total points lost in items that belong to infected people": "Total de pontos perdidos em itens que pertencem a pessoas infectadas",
+        "lost_by_infected_people": "Perdidos",
+        "lost_by_infected_people_help": "Total de pontos perdidos em itens que pertencem a pessoas infectadas",
+        "total_pontuation": "Total"
+    },
     "success": {
         "add": "Cadastrado com sucesso",
         "update": "Atualizado com sucesso",
@@ -117,7 +131,7 @@
                 "title": "realizar uma denúncia",
                 "success": "Denúncia registrada com sucesso, obrigado pela colaboração",
                 "already_have": "Essa denúncia já foi contabilizada no sistema, após três, esse membro será marcado como infectado, obrigado por sua colaboração."
-            },            
+            },
             "trade": {
                 "title": "negociar itens",
                 "success": "Negociação realizada com sucesso, obrigado por utilizar o sistema."

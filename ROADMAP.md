@@ -31,9 +31,9 @@
     * they must respect the table price.
     * Both sides of the trade should offer the same amount of points.
     * the items will be transferred from one survivor to the other.
-* :hourglass: Reports
-    * Percentage of infected survivors.
-    * Percentage of non-infected survivors.
-    * Average amount of each kind of resource by survivor (e.g. 5 waters per survivor)
-    * Points lost because of infected survivor.
+* :white_check_mark: Reports
+    * Percentage of infected survivors. :white_check_mark:
+    * Percentage of non-infected survivors. :white_check_mark:
+    * Average amount of each kind of resource by survivor (e.g. 5 waters per survivor) :white_check_mark:
+    * Points lost because of infected survivor. :white_check_mark:
     

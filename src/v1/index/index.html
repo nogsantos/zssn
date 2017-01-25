@@ -1,16 +1,74 @@
 <template>
-    <div class="row">    
+    <require from="./index.css"></require>
+    <div class="row" id="dashboard">
         <div class="row">
             <div class="col s12 m12 l12">
-                <span class="flow-text">${title} <small>» sub</small></span>
+                <span class="flow-text">${title}&nbsp;<small>»&nbsp;${'reports.subtitle'|t}</small></span>
             </div>
         </div>
         <div class="row">
             <div class="col s12 m12 l12">
-                <div class="section card-panel white z-depth-2">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae corrupti nulla facere, nemo vel nesciunt temporibus est placeat iusto assumenda tempore recusandae delectus rem repellat deserunt magni exercitationem quaerat tenetur!
+                <div class="col s12 m12 l6">
+                    <div class="card-panel grey lighten-5">
+                        <span class="flow-text blue-text text-darken-2 left">${average_people_title}</span>
+                        <div class="preloader-wrapper small active" id="rel_people_load" if.bind="average_people_load">
+                            <div class="spinner-layer spinner-red-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <svg ref="ref_average_people"></svg>
+                    </div>
+                </div>
+                <div class="col s12 m12 l6">
+                    <div class="card-panel grey lighten-5">
+                        <span class="flow-text blue-text text-darken-2">${average_items_title}</span>
+                        <div class="preloader-wrapper small active" id="rel_items_load" if.bind="average_items_load">
+                            <div class="spinner-layer spinner-red-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>                        
+                        <svg ref="ref_average_items"></svg>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="col s12 m12 l6">
+                    <div class="card-panel grey lighten-5">
+                        <span class="flow-text blue-text text-darken-2">${total_points_title}</span>
+                        <div class="preloader-wrapper small active" id="rel_total_points" if.bind="total_points_load">
+                            <div class="spinner-layer spinner-red-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>                        
+                        <svg ref="ref_total_points"></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
 </template>

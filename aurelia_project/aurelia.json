@@ -208,6 +208,19 @@
                         "path": "../node_modules/moment/min",
                         "main": "moment-with-locales"
                     },
+                    {
+                        "name": "d3",
+                        "path": "../node_modules/d3",
+                        "main": "d3"
+                    },
+                    {
+                        "name": "nvd3",
+                        "path": "../node_modules/nvd3/build",
+                        "main": "nv.d3",
+                        "deps": [
+                            "d3"
+                        ]
+                    },
                     "jquery"
                 ]
             },
