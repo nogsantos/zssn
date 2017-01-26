@@ -60,6 +60,12 @@ export class App {
             nav: false            
         });
         config.map({
+            route: 'survivor/trade',
+            name: 'SurvivorTrade',
+            moduleId: 'v1/survivor/trade',
+            nav: false            
+        });
+        config.map({
             route: 'about',
             name: 'About',
             moduleId: 'v1/about/index',

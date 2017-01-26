@@ -21,7 +21,8 @@ import * as $ from 'jquery';
 export class AuthForm {
     private loading: boolean;
     private survivor = {
-        id: "d778cc9d-650b-4a71-b371-48a44bb69f9a"
+        // id: "d497b36b-5386-42db-a8d3-b0113a4454d8"
+        id: null
     };
     /**
      * CDI

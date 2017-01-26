@@ -17,6 +17,16 @@
     "total_number_infected": "Número total de infectados",
     "total_number_not_infected": "Número total de não infectados",
     "inventory": "Inventário",
+    "items_to_offer": "Itens para oferecer",
+    "send_request": "Enviar solicitação",
+    "items_to_claim": "Itens para solicitar",
+    "requester": "Requisitante",
+    "requested": "Requisitado",
+    "total_pontuation": "Pontuação total",
+    "qtd_available": "Qtd.<br>Disponível",
+    "qtd_to_offer": "Qtd.<br>a oferecer",
+    "qtd_to_claim": "Qtd.<br>a solicitar",
+    "grand_total": "Total<br>geral",
     "iventory_item": {
         "upper": "$t(iventory_item.{{item}})",
         "Water": "Água",
@@ -60,6 +70,12 @@
     "delate_infection": "Denunciar como infectado",
     "trade_itens": "Comercializar itens",
     "trade": "Comercializar",
+    "trade_form":{
+        "title": "Troca de itens",
+        "subtitle": "Através desse formulário os sobreviventes podem trocar itens entre si.",
+        "info": "Para a troca, a tabela de preços deve ser respeitada, onde o valor de um item é descrito em termos de pontos. Ambos os lados do comércio devem oferecer a mesma quantidade de pontos. Por exemplo, 1 água e 1 medicação (1 x 4 + 1 x 2) vale 6 munições (6 x 1) ou 2 itens alimentares (2 x 3).",
+        "": ""
+    },
     "reports": {
         "subtitle": "Relatórios dos dados cadastrados no sistema",
         "average_of": "Média de Pessoas",
@@ -77,6 +93,8 @@
     "success": {
         "add": "Cadastrado com sucesso",
         "update": "Atualizado com sucesso",
+        "trade": "Negócio realizado com sucesso",
+        "enjoy": "Aproveite seus novos itens!",
         "survivor_id": "Código identificador do sobrevivente"
     },
     "error": {

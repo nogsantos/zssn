@@ -38,7 +38,7 @@ export class Index {
     // Items points
     private ref_total_points;
     private total_points_title: string;
-    private total_points_load: boolean;    
+    private total_points_load: boolean;
     private total_points_data: Array<any>;
     /**
      * CDI
@@ -72,7 +72,9 @@ export class Index {
         this.average_people_load = true;
         this.average_people_title = this.i18n.tr('reports.average_of');
         this.average_people = [];
-        this.getInfected(() => this.getNonInfected(() => this.makePeopleChart()));
+        new Promise((reject, resolve) => {
+            this.getInfected(() => this.getNonInfected(() => this.makePeopleChart()));
+        }).then(resolve => resolve).catch(reject => reject);
     }
     /**
      * Getting infected info
@@ -157,7 +159,9 @@ export class Index {
      */
     prepareAverageItems(): void {
         this.average_items_load = true;
-        this.getAverageItems(() => this.makeAverageItems());
+        new Promise((reject, resolve) => {
+            this.getAverageItems(() => this.makeAverageItems());
+        }).then(resolve => resolve).catch(reject => reject);
     }
     /**
      * Get average items info
@@ -226,7 +230,9 @@ export class Index {
      */
     prepareTotalPoints(): void {
         this.total_points_load = true;
-        this.getTotalPoints(total => this.makeTotalPoints(total));
+        new Promise((reject, resolve) => {
+            this.getTotalPoints(total => this.makeTotalPoints(total));
+        }).then(resolve => resolve).catch(reject => reject);
     }
     /** 
      * Total points lost in items that belong to infected people
@@ -239,7 +245,7 @@ export class Index {
             .then(response => {
                 this.total_points_title = this.i18n.tr(`reports.${response.report.description}`);
                 this.total_points_data = [
-                    { key: this.i18n.tr(`reports.lost_by_infected_people`), y: response.report.total_points_lost},
+                    { key: this.i18n.tr(`reports.lost_by_infected_people`), y: response.report.total_points_lost },
                     { key: "total", y: 0 }
                 ];
                 callback(response.report.total_points_lost);

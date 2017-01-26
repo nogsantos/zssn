@@ -48,7 +48,7 @@ export class Storage {
      * @param String key the id of storage
      */
     remove(key: string): void {
-        localStorage.clear();
+        localStorage.removeItem(key);
         sessionStorage.removeItem(key);
     }
     /**

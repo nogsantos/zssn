@@ -2,6 +2,7 @@ import { autoinject, bindable } from 'aurelia-framework';
 import { I18N } from 'aurelia-i18n';
 import { ResourceFactory } from '../../resources/system/resource-factory';
 import { MdToastService } from 'aurelia-materialize-bridge';
+import { Router } from "aurelia-router";
 import { Storage } from '../../resources/system/storage';
 import { Survivor } from './survivor';
 import env from '../../resources/system/env';
@@ -39,7 +40,8 @@ export class SurvivorList {
         private i18n: I18N,
         private storage: Storage,
         private toast: MdToastService,
-        private resource: ResourceFactory
+        private resource: ResourceFactory,
+        private subrouter: Router
     ) { }
     /**
      * When view-model is activeted
@@ -84,7 +86,7 @@ export class SurvivorList {
                         arr_not_infected.push(value);
                         this.count_not_infected++;
                     }
-                    return index === 200; // just gettin last 200 insertions to reduce the dom manipulation
+                    return index === 300; // just gettin last 300 insertions to reduce the dom manipulation
                 });
                 this.survivors_infected = arr_infected;
                 this.survivors_not_infected = arr_not_infected;
@@ -94,13 +96,7 @@ export class SurvivorList {
             this.is_loading = false;
             console.log(error);
         });
-    }
-    /**
-     * Update a survivor location
-     */
-    update(location: string): void {
-        console.log(this.getIdFromLocation(location));
-    }
+    }    
     /**
      * Delate a survivor as infected
      */
@@ -132,6 +128,10 @@ export class SurvivorList {
             this.toast.show(this.i18n.tr('survivor.list_info.auth', { type: 'trade' }), env.conf.messages.warn.duration);
             return;
         }
+        // storaging requested 
+        this.storage.set('requested_survivor', JSON.stringify({id:this.getIdFromLocation(location)}));
+        // redirecting to trade form
+        this.subrouter.navigate("#/survivor/trade");
     }
     /**
      * From a location url, get the id

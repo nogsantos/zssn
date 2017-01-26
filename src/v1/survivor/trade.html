@@ -1,0 +1,180 @@
+<template>
+    <div class="row" id="_trade_items">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <span class="flow-text">${title}&nbsp;<small>»&nbsp;${subtitle}</small></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="section card-panel white z-depth-2">
+                    <div class="row">
+                        <div class="col s12 m12 l9">${info}</div>
+                        <div class="col s12 m12 l3">
+                            <div class="col s12 m12 l2 s-m-hide left">
+                                <span>${'item'|t}&nbsp;»</span><br><br>
+                                <span>${'point'|t}&nbsp;»</span>
+                            </div>
+                            <div class="col s12 m12 l2 center">
+                                <img src="images/water.svg">
+                                <div class="flow-text">4</div>
+                            </div>
+                            <div class="col s12 m12 l2 center">
+                                <img src="images/food.svg">
+                                <div class="flow-text">3</div>
+                            </div>
+                            <div class="col s12 m12 l2 center">
+                                <img src="images/needle.svg">
+                                <div class="flow-text">2</div>
+                            </div>
+                            <div class="col s12 m12 l2 center">
+                                <img src="images/pistol.svg">
+                                <div class="flow-text">1</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="section card-panel white z-depth-2">
+                    <div class="row">
+                        <div class="col s12 m12 l6">
+                            <div class="row">
+                                <spam class="flow-text valign">${'items_to_offer'|t}</spam>
+                                <span class="valign">&nbsp;&nbsp;${'requester'|t}: ${survivor_requester.name}</span>
+                            </div>                            
+                            <div class="card-panel blue-grey lighten-5 z-depth-2 hoverable">
+                                <table class="highlight bordered responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th>${'item'|t}</th>                                            
+                                            <th class="center-align"><spam t="[html]qtd_available"></spam></th>
+                                            <th class="center-align"><spam t="[html]total"></spam></th>
+                                            <th class="center-align"><spam t="[html]qtd_to_offer"></spam></th>
+                                            <th class="center-align"><spam t="[html]grand_total"></spam></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>${'water'|t}</td>
+                                            <td class="center-align">${offered_item.Water.disp - offered_item.Water.offered}</td>
+                                            <td class="center-align">${offered_item.Water.total_pontuation - (offered_item.Water.offered * offered_item.Water.point)}</td>
+                                            <td class="center-align"><input type="number" class="center-align" keyup.delegate="quantityItemToOffer()" change.delegate="quantityItemToOffer()"value.bind="offered_item.Water.offered"></td>
+                                            <td class="center-align">${(offered_item.Water.offered * offered_item.Water.point)}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>${'food'|t}</td>
+                                            <td class="center-align">${offered_item.Food.disp - offered_item.Food.offered}</td>
+                                            <td class="center-align">${offered_item.Food.total_pontuation - (offered_item.Food.offered * offered_item.Food.point)}</td>
+                                            <td class="center-align"><input type="number" class="center-align" keyup.delegate="quantityItemToOffer()" change.delegate="quantityItemToOffer()"value.bind="offered_item.Food.offered"></td>
+                                            <td class="center-align">${(offered_item.Food.offered * offered_item.Food.point)}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>${'medication'|t}</td>
+                                            <td class="center-align">${offered_item.Medication.disp - offered_item.Medication.offered}</td>
+                                            <td class="center-align">${offered_item.Medication.total_pontuation - (offered_item.Water.offered * offered_item.Medication.point)}</td>
+                                            <td class="center-align"><input type="number" class="center-align" keyup.delegate="quantityItemToOffer()" change.delegate="quantityItemToOffer()"value.bind="offered_item.Medication.offered"></td>
+                                            <td class="center-align">${(offered_item.Medication.offered * offered_item.Medication.point)}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>${'ammunition'|t}</td>
+                                            <td class="center-align">${offered_item.Ammunition.disp - offered_item.Ammunition.offered}</td>
+                                            <td class="center-align">${offered_item.Ammunition.total_pontuation - (offered_item.Ammunition.offered * offered_item.Ammunition.point)}</td>
+                                            <td class="center-align"><input type="number" class="center-align" keyup.delegate="quantityItemToOffer()" change.delegate="quantityItemToOffer()"value.bind="offered_item.Ammunition.offered"></td>
+                                            <td class="center-align">${(offered_item.Ammunition.offered * offered_item.Ammunition.point)}</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot class="hoverable">
+                                        <tr>
+                                            <td colspan="5">
+                                                <div class="col s12 m12 l8 right-align"><i>${'total_pontuation'|t}:</i></div>
+                                                <div class="col s12 m12 l4 right-align flow-text"><b>${total_offer}</b></div>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>                            
+                        </div>
+                        <div class="col s12 m12 l6">
+                            <div class="row">
+                                <spam class="flow-text valign">${'items_to_claim'|t}</spam>
+                                <span class="valign">&nbsp;&nbsp;${'requested'|t}: ${survivor_requested.name}</span>                                
+                            </div>                            
+                            <div class="card-panel grey lighten-5 z-depth-2 hoverable">
+                                <table class="highlight bordered responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th>${'item'|t}</th>
+                                            <th class="center-align"><spam t="[html]qtd_available"></spam></th>
+                                            <th class="center-align"><spam t="[html]total"></spam></th>
+                                            <th class="center-align"><spam t="[html]qtd_to_claim"></spam></th>
+                                            <th class="center-align"><spam t="[html]grand_total"></spam></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>${'water'|t}</td>
+                                            <td class="center-align">${claimed_item.Water.disp - claimed_item.Water.claimed}</td>
+                                            <td class="center-align">${claimed_item.Water.total_pontuation - (claimed_item.Water.claimed * claimed_item.Water.point)}</td>
+                                            <td class="center-align"><input type="number" class="center-align" keyup.delegate="quantityItemToRequest()" change.delegate="quantityItemToRequest()"value.bind="claimed_item.Water.claimed"></td>
+                                            <td class="center-align">${(claimed_item.Water.claimed * claimed_item.Water.point)}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>${'food'|t}</td>
+                                            <td class="center-align">${claimed_item.Food.disp - claimed_item.Food.claimed}</td>
+                                            <td class="center-align">${claimed_item.Food.total_pontuation - (claimed_item.Food.claimed * claimed_item.Food.point)}</td>
+                                            <td class="center-align"><input type="number" class="center-align" keyup.delegate="quantityItemToRequest()" change.delegate="quantityItemToRequest()"value.bind="claimed_item.Food.claimed"></td>
+                                            <td class="center-align">${(claimed_item.Food.claimed * claimed_item.Food.point)}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>${'medication'|t}</td>
+                                            <td class="center-align">${claimed_item.Medication.disp - claimed_item.Medication.claimed}</td>
+                                            <td class="center-align">${claimed_item.Medication.total_pontuation - (claimed_item.Water.claimed * claimed_item.Medication.point)}</td>
+                                            <td class="center-align"><input type="number" class="center-align" keyup.delegate="quantityItemToRequest()" change.delegate="quantityItemToRequest()" value.bind="claimed_item.Medication.claimed"></td>
+                                            <td class="center-align">${(claimed_item.Medication.claimed * claimed_item.Medication.point)}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>${'ammunition'|t}</td>
+                                            <td class="center-align">${claimed_item.Ammunition.disp - claimed_item.Ammunition.claimed}</td>
+                                            <td class="center-align">${claimed_item.Ammunition.total_pontuation - (claimed_item.Ammunition.claimed * claimed_item.Ammunition.point)}</td>
+                                            <td class="center-align"><input type="number" class="center-align" keyup.delegate="quantityItemToRequest()" change.delegate="quantityItemToRequest()"value.bind="claimed_item.Ammunition.claimed"></td>
+                                            <td class="center-align">${(claimed_item.Ammunition.claimed * claimed_item.Ammunition.point)}</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot class="hoverable">
+                                        <tr>
+                                            <td colspan="5">
+                                                <div class="col s12 m12 l8 right-align"><i>${'total_pontuation'|t}</i></div>
+                                                <div class="col s12 m12 l4 right-align flow-text"><b>${total_requested}</b></div>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>                            
+                        </div>
+                    </div>                
+                    <div class="row" if.bind="message.body">
+                        <div class="col s12 m12 l12">
+                            <label class="flow-text">${message.title}</label>
+                            <div class="card-panel ${message.style} lighten-5 hoverable">                            
+                                <ul><li repeat.for="item of message.body" innerhtml.bind="item"></li></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m12 l12 right-align">
+                            <button                    
+                                class="waves-effect waves-light primary btn s-m-full-line" 
+                                click.delegate="sendRequestTrade()">
+                                    <i class="left material-icons">save</i>
+                                    &nbsp;${'send_request'|t}
+                            </button>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
