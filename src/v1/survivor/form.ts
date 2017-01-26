@@ -27,7 +27,7 @@ export class Form {
     private gender_style: string;
     private image: string;
     private is_loading: boolean;
-    private survivor: Survivor;    
+    private survivor: Survivor;
     private message = {
         title: null,
         style: null,
@@ -77,7 +77,8 @@ export class Form {
         this.inventory.Food = 0;
         this.inventory.Medication = 0;
         this.inventory.Ammunition = 0;
-        this.is_loading = true;        
+        this.is_loading = true;
+        this.survivor = new Survivor();
     }
     attached() {
         this.is_loading = false;
@@ -96,7 +97,7 @@ export class Form {
      * Will try to persist the information
      */
     save() {
-        this.is_loading = true;        
+        this.is_loading = true;
         let objetcToSave = {
             name: this.survivor.name,
             age: this.survivor.age,
@@ -131,7 +132,7 @@ export class Form {
             inventory_pattern += '' + key + ':' + this.inventory[key] + ';';
         });
         return inventory_pattern.replace(/;$/, "");
-    }    
+    }
     /**
      * Prepare the form to add another survivor
      */

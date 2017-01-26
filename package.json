@@ -1,7 +1,7 @@
 {
   "name": "zssn",
   "description": "Zombie Survival Social Network",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "Fabricio Nogueira (nogsantos@gmail.com)",
   "scripts": {
     "dev": "./node_modules/.bin/au run --watch",
