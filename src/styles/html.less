@@ -25,18 +25,28 @@ code {
 
 nav{    
     background-color: @primary-color !important;	
-    @media all and ( min-width: 600px){
-        height: 7em !important;
-        .nav-title {
-            display: none !important;
+    height: 7em !important;
+    .nav-title {
+        display: none !important;
+    }
+    .nav-wrapper{
+        top: 1em !important;    
+    }
+    .waves-circle{
+        width: 4.5em !important;
+        height: 4.5em !important;
+    }    
+    @media all and (max-width: 600px){
+        .waves-circle {
+            width: 2.5em !important;
+            height: 2.5em !important;
         }
-        .nav-wrapper{
-            top: 1em !important;    
+        ul a.btn-floating{
+            margin-right: 0 !important;
         }
-        .waves-circle{
-            width: 4.5em !important;
-            height: 4.5em !important;
-        }    
+        i.material-icons{
+            line-height: 33px !important;
+        }
     }
 }
 

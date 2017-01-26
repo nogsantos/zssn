@@ -1,29 +1,59 @@
 <template>    
-    <div class="navbar-fixed">
+    <require from="./navigation-top.css"></require>
+    <div class="navbar-fixed">        
         <nav>
-            <div class="container">
-                <div class="nav-wrapper">
-                    <a href="#/" class="brand-logo">
-                    <i class="material-icons">more_vert</i>
-                        <span class="flow-text">
-                            ${router.title}
-                        </span>
-                    </a>
-                    <ul class="right hide-on-med-and-down">
-                        <li repeat.for="row of router.navigation" id="${row.config.id}">
-                            <a                             
-                                href.bind="row.href" 
-                                md-button="floating: true;" 
-                                md-waves="color: light; circle: true;" 
-                                class="transparent" 
-                                md-tooltip="position: bottom; text.bind: row.title">
-                                <i class="large material-icons">${row.config.icon}</i>
-                            </a>
-                            <span class="nav-title flow-text">${row.title}</span>
-                        </li>
-                    </ul>
-                </div>
+            <div class="nav-wrapper"> 
+                <div class="row">
+                    <div class="col left l4 hide-on-med-and-down">
+                        <a href="#/">                            
+                            <span class="flow-text">
+                                ${router.title}
+                            </span>
+                        </a>                    
+                    </div>    
+                    <div if.bind="!autenticated" id="auth-menu" class="col s12 m12 l4 center-align">
+                        <a class="waves-effect waves-light btn" click.delegate="authForm()">${'login'|t}</a>
+                    </div>
+                    <div class="col" if.bind="autenticated">
+                        <div class="col left">${'hello'|t} ${survivor.name}!</div>
+                        <ul class="right">
+                            <li>
+                                <a
+                                    href="#/survivor/profile"
+                                    md-button="floating: true;" 
+                                    md-waves="color: light; circle: true;" 
+                                    class="transparent" 
+                                    md-tooltip="position: bottom; text: Perfil">
+                                    <i class="large material-icons">account_box</i>
+                                </a>                            
+                                <a
+                                    click.delegate="logout()"
+                                    md-button="floating: true;" 
+                                    md-waves="color: light; circle: true;" 
+                                    class="transparent" 
+                                    md-tooltip="position: bottom; text: Sair">
+                                    <i class="large material-icons">power_settings_new</i>
+                                </a>                            
+                            </li>                            
+                        </ul>
+                    </div>
+                    <div class="col right l4">
+                        <ul class="right">                            
+                            <li repeat.for="row of router.navigation" id="${row.config.id}">
+                                <a                             
+                                    href.bind="row.href" 
+                                    md-button="floating: true;" 
+                                    md-waves="color: light; circle: true;" 
+                                    class="transparent" 
+                                    md-tooltip="position: bottom; text.bind: row.title">
+                                    <i class="large material-icons">${row.config.icon}</i>
+                                </a>
+                                <span class="nav-title flow-text">${row.title}</span>
+                            </li>                           
+                        </ul>
+                    </div>
+                </div>                
             </div>
-        </nav>
+        </nav>        
     </div>
 </template>

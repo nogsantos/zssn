@@ -1,0 +1,24 @@
+#dashboard .nvd3.nv-pie.nv-chart-donut1 .nv-pie-title {
+    opacity: 0.4;
+    fill: green;
+}
+
+#dashboard svg {
+    display: block;
+    height: 350px !important;
+    width: 100% !important;
+}
+
+#dashboard {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+#rel_items_load,
+#rel_total_points,
+#rel_people_load {
+    position: relative;
+    float: right;
+}

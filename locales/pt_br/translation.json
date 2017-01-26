@@ -8,12 +8,42 @@
     "people": "Pessoas",
     "members": "Membros",
     "members_rol": "Rol de Membros",
+    "search_by_name": "Localizar por nome",
     "name": "Nome",
     "age": "Idade",
     "location": "Localização",
     "last_location": "Última localização",
     "current_location": "Localização atual",
+    "total_number_infected": "Número total de infectados",
+    "total_number_not_infected": "Número total de não infectados",
     "inventory": "Inventário",
+    "items_to_offer": "Itens para oferecer",
+    "send_request": "Enviar solicitação",
+    "items_to_claim": "Itens para solicitar",
+    "requester": "Requisitante",
+    "requested": "Requisitado",
+    "total_pontuation": "Pontuação total",
+    "qtd_available": "Qtd.<br>Disponível",
+    "qtd_to_offer": "Qtd.<br>a oferecer",
+    "qtd_to_claim": "Qtd.<br>a solicitar",
+    "grand_total": "Total<br>geral",
+    "iventory_item": {
+        "upper": "$t(iventory_item.{{item}})",
+        "Water": "Água",
+        "Food": "Comida",
+        "Medication": "Medicamentos",
+        "Ammunition": "Munição"
+    },
+    "profile_help": "Seguem suas informações, caso necessite, utilize o mapa para atualizar sua localização.",
+    "quantity": "Quantidade",
+    "value_un": "Valor Un. (Pontos)",
+    "value_tot": "Valor Total",
+    "update_location": "Atualizar Localização",
+    "new_location": "Nova Localização",
+    "id": "ID.",
+    "not_informed": "Não informada",
+    "itens_in_inventory": "Itens no inventário",
+    "inventory_empty": "Não há itens em seu inventário",
     "water": "Água",
     "food": "Comida",
     "medication": "Medicamentos",
@@ -29,10 +59,43 @@
     "latitud": "Latitude",
     "address": "Endereço",
     "longitud": "Longitude",
+    "update": "Atualizar",
+    "delate": "Denunciar",
+    "login": "Login",
+    "profile": "Perfil",
+    "view_profile": "Visualizar perfil",
+    "view": "Visualizar",
+    "hello": "Olá",
+    "logout": "Sair do sistema",
+    "delate_infection": "Denunciar como infectado",
+    "trade_itens": "Comercializar itens",
+    "trade": "Comercializar",
+    "trade_form":{
+        "title": "Troca de itens",
+        "subtitle": "Através desse formulário os sobreviventes podem trocar itens entre si.",
+        "info": "Para a troca, a tabela de preços deve ser respeitada, onde o valor de um item é descrito em termos de pontos. Ambos os lados do comércio devem oferecer a mesma quantidade de pontos. Por exemplo, 1 água e 1 medicação (1 x 4 + 1 x 2) vale 6 munições (6 x 1) ou 2 itens alimentares (2 x 3).",
+        "": ""
+    },
+    "reports": {
+        "subtitle": "Relatórios dos dados cadastrados no sistema",
+        "average_of": "Média de Pessoas",
+        "Average of infected people": "Infectadas",
+        "Average of non-infected (healthy) people": "Não infectadas",
+        "no_description": "Sem descrição",
+        "average_items_quantity_per_healthy_person": "Por pessoa não infectada",
+        "average_items_quantity_per_person": "Por pessoa",
+        "Average of the quantity of items per person (total and just non-infected)": "Média de quantidade de itens",
+        "Total points lost in items that belong to infected people": "Total de pontos perdidos em itens que pertencem a pessoas infectadas",
+        "lost_by_infected_people": "Perdidos",
+        "lost_by_infected_people_help": "Total de pontos perdidos em itens que pertencem a pessoas infectadas",
+        "total_pontuation": "Total"
+    },
     "success": {
         "add": "Cadastrado com sucesso",
+        "update": "Atualizado com sucesso",
+        "trade": "Negócio realizado com sucesso",
+        "enjoy": "Aproveite seus novos itens!",
         "survivor_id": "Código identificador do sobrevivente"
-
     },
     "error": {
         "age": "Campo [<b>Idade</b>]",
@@ -48,7 +111,8 @@
         "can't be blank,is not a number": "Não pode estar em branco e Não é um número válido",
         "can't be blank,is not included in the list": "Não pode estar em branco e Não está incluso na lista de valores permitidos",
         "respond": "Há erros em sua requisição",
-        "unknow": "Desculpe, erro desconhecido"
+        "unknow": "Desculpe, erro desconhecido",
+        "404": "Desculpe, a página que você procura não faz parte do sistema."
     },
     "map": {
         "error": "A geolocalização não está habilitada em seu navegado. Clique em um ponto do mapa para obter as coordenadas.",
@@ -62,14 +126,37 @@
         "undefined": "Indefinido"
     },
     "survivor": {
-        "title": "Sobrevivente",
-        "info": "Aqui serão listados os sobreviventes",
+        "title": "Membros",
+        "welcome": "Bem vindo {{name}}!",
+        "info": "<blockquote>Os bravos membros da resistência aos zumbis estarão listados aqui. Abaixo você poderá visualizar duas abas, \"Não infectado\" onde serão listados os membros cadastrados que não foram infectados e, \"Infectado\" <i>(In memoriam)</i>, as vítimas desse terrível virus.</blockquote>",
         "status": "Estado",
+        "input_search_help": "<p>Digite o Nome que deseja localizar e pressione a tecla \"Enter\" para realizar a busca.</p><p>Ps.: Caso não localize quem procura na aba \"Não infectado\", o mesmo filtro também será aplicado na aba \"Infectado\"</p>",
+        "bt_clean_help": "Limpar nome.",
+        "created_at": "Cadastrado em",
+        "updated_at": "Última atualização",
+        "last_location": "Última localização",
+        "location_not_informed": "Localização não informada",
+        "location_bad_format": "Localização não informada corretamente",
         "desc": "$t(survivor.{{status}})",
         "true": "Infectado",
         "false": "Não infectado",
-        "list": "Listar todos sobreviventes",
-        "new": "Cadastrar novo sobrevivente",
+        "nav": "Listar todos os membros",
+        "search": "Localizar um membro",
+        "list": "Listagem de membros",
+        "list_info": {
+            "auth": "Para $t(survivor.list_info.{{type}}.title), é necessário possuir um registro, caso ainda não seja um membro, e autentique-se antes",
+            "delate": {
+                "title": "realizar uma denúncia",
+                "success": "Denúncia registrada com sucesso, obrigado pela colaboração",
+                "already_have": "Essa denúncia já foi contabilizada no sistema, após três, esse membro será marcado como infectado, obrigado por sua colaboração."
+            },
+            "trade": {
+                "title": "negociar itens",
+                "success": "Negociação realizada com sucesso, obrigado por utilizar o sistema."
+            }
+        },
+        "list_sub": "Membros não infectados e infectados",
+        "new": "Cadastrar novo membro",
         "form": {
             "help": "Use o formulário abaixo para registar os dados."
         }
@@ -161,6 +248,9 @@
                 "505": "Versão HTTP não suportada"
             }
         }
+    },
+    "about_page": {
+        "sub":"O que foi utilizado para desenvolvimento do sistema."        
     },
     "wellcome": "Bem vindo sobrevivente membro da resistência!"
 }

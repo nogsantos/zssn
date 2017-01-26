@@ -38,11 +38,11 @@ export class App {
             name: 'Survivor',
             moduleId: 'v1/survivor/index',
             nav: true,
-            title: this.i18n.tr('survivor.list'),
+            title: this.i18n.tr('survivor.nav'),
             href: "#/survivor",
             icon: 'accessibility',
             id: "_survivor"
-        });
+        });        
         config.map({
             route: 'survivor/form',
             name: 'SurvivorForm',
@@ -52,16 +52,18 @@ export class App {
             href: "#/survivor/form",
             icon: 'add',
             id: "_survivor_form"
+        });        
+        config.map({
+            route: 'survivor/profile',
+            name: 'SurvivorProfile',
+            moduleId: 'v1/survivor/profile',
+            nav: false            
         });
         config.map({
-            route: 'report',
-            name: 'Report',
-            moduleId: 'v1/report/index',
-            nav: true,
-            title: this.i18n.tr('report'),
-            href: "#/report",
-            icon: 'content_paste',
-            id: "_report"
+            route: 'survivor/trade',
+            name: 'SurvivorTrade',
+            moduleId: 'v1/survivor/trade',
+            nav: false            
         });
         config.map({
             route: 'about',
@@ -78,12 +80,13 @@ export class App {
          */
         let navStrat = (instruction: NavigationInstruction) => {
             if (instruction.config === null) {
-                return '404';
+                return 'error-404';
             }
             instruction.config.moduleId = instruction.fragment;
             instruction.config.href = instruction.fragment;
         };
         config.mapUnknownRoutes(navStrat);
+        config.fallbackRoute('index');
         this.router = router;
     }
 

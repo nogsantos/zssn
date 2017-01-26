@@ -20,10 +20,10 @@ export class ResourceFactory {
      * @param Object body what will be persisted
      * @return Promise * 
      */
-    send(resource: string, id?: number | String, body?: Object): Promise<any> {
+    send(resource: string, id?: number | String, body?: Object, id_before_resource?:boolean): Promise<any> {
         const http = new Http();
-        const addPromise = http.fetch(`${resource}${id ? `/${id}` : ''}`, {
-            method: id ? 'patch' : 'post',
+        const addPromise = http.fetch(`${id && id_before_resource ?`people/${id}/` : ''}${resource}${id && !id_before_resource ? `/${id}.json` : '.json'}`, {
+            method: id && !id_before_resource ? 'put' : 'post',
             body: json(body)
         })
             .then(this.checkStatus)
@@ -47,7 +47,7 @@ export class ResourceFactory {
      */
     query(resource: string, id?: string): Promise<any> {
         const http = new Http();
-        const queryPromise = http.fetch(`${resource}${id ? id : ''}`)
+        const queryPromise = http.fetch(`${resource}${id ? `/${id}.json` : ''}`)
             .then(this.checkStatus)
             .then(this.parseJSON)
             .then(response => {
