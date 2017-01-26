@@ -26,11 +26,11 @@
 * :white_check_mark: Survivors cannot Add/Remove items from inventory
     * Their belongings must be declared when they are first registered in the system :white_check_mark:
     * They can only change their inventory by means of trading with other survivors. :white_check_mark:
-* :hourglass: Trade items
-    * Survivors can trade items among themselves.
-    * they must respect the table price.
-    * Both sides of the trade should offer the same amount of points.
-    * the items will be transferred from one survivor to the other.
+* :white_check_mark: Trade items
+    * Survivors can trade items among themselves. :white_check_mark:
+    * they must respect the table price. :white_check_mark:
+    * Both sides of the trade should offer the same amount of points. :white_check_mark:
+    * the items will be transferred from one survivor to the other. :white_check_mark:
 * :white_check_mark: Reports
     * Percentage of infected survivors. :white_check_mark:
     * Percentage of non-infected survivors. :white_check_mark:

@@ -1,4 +1,3 @@
-import { Survivor } from './survivor';
 /**
  * @description
  *  Utilities for Survivor
