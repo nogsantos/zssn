@@ -4,6 +4,29 @@
 
 By Fabricio Nogueira
 
+## Setting up
+
+### Após clonagem do código
+```shell
+$ git clone git@github.com:nogsantos/zssn.git
+```
+
+### Configurar o projeto para desenvolvimento
+```shell
+$ make
+```
+
+### Gerar arquivos para distribuição (build)
+Para o grunt instalado de modo ```global```
+```shell
+$ grunt
+```
+Para o grunt ```local```
+```shell
+$ ./node_modules/.bin/grunt
+```
+Um diretório ```dist``` será criado com o release definido no ```package.json```
+
 ## Problem Description
 
 The world as we know it has fallen into an apocalyptic scenario. A laboratory-made virus is transforming human beings and animals into zombies, hungry for fresh flesh.

@@ -1,5 +1,5 @@
 /**
- * Grunt v0.1.0 
+ * Grunt v0.1.0
  */
 (function () {
     "use strict";
@@ -12,13 +12,13 @@
                     stderr: false
                 },
                 dist: {
-                    command: () => 'au build --env prod'
+                    command: () => './node_modules/.bin/au build --env prod'
                 },
                 test: {
-                    command: () => 'au build'
+                    command: () => './node_modules/.bin/au build'
                 },
                 dev: {
-                    command: () => 'au run --watch'
+                    command: () => './node_modules/.bin/au run --watch'
                 },
                 version: {
                     command: v => `echo ${v} > VERSION`
